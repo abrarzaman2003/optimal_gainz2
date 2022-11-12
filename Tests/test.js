@@ -65,7 +65,7 @@ test('attempting to enter invalid age', () =>{
 })
 
 test("creating a user", async () => {
-    email = "dog@gmail.com";
+    email = "god@gmail.com";
     password = "P@ssword123";
     retypedPassword = "P@ssword123";
     age = 20;
@@ -74,6 +74,21 @@ test("creating a user", async () => {
     heightIn = 8;
     const data = await makeUser(email,password,retypedPassword,age,weight,heightFt,heightIn);
     expect(data).toBe(true)
+})
+
+test("creating a user that already exists", async () => {
+  try{email = "dog@gmail.com";
+  password = "P@ssword123";
+  retypedPassword = "P@ssword123";
+  age = 20;
+  weight = 150;
+  heightFt = 5;
+  heightIn = 8;
+  const data = await makeUser(email,password,retypedPassword,age,weight,heightFt,heightIn);
+  //expect(data).toBe(true)
+  }catch(e){
+    expect(e.message).toBe("auth/email-already-in-use");
+  }
 })
 
 // jest.mock('firebase/auth', () => {
