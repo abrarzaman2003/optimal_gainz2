@@ -19,13 +19,15 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 [![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
-
+  [![LinkedIn][linkedin-shield]][linkedin-url-1]
+  [![LinkedIn][linkedin-shield]][linkedin-url-2]
+  [![LinkedIn][linkedin-shield]][linkedin-url-3]
+  [![LinkedIn][linkedin-shield]][linkedin-url-4]
+  [![LinkedIn][linkedin-shield]][linkedin-url-5]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -117,18 +119,24 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Get a free API Key at [https://firebase.google.com](https://firebase.google.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/abrarzaman2003/optimal_gainz2.git
    ```
-3. Install NPM packages
+3. Install NPM packages or Yarn
    ```sh
    npm install
    ```
+   
+   ```sh
+   yarn install
+   ```
+   
 4. Enter your API in `config.js`
    ```js
    const API_KEY = 'ENTER YOUR API';
+   
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -212,17 +220,21 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+[contributors-url]: https://github.com/abrarzaman2003/optimal_gainz2/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/abrarzaman2003/optimal_gainz2.svg?style=for-the-badge
+[forks-url]: https://github.com/abrarzaman2003/optimal_gainz2/network/members
+[stars-shield]: https://img.shields.io/github/stars/abrarzaman2003/optimal_gainz2.svg?style=for-the-badge
+[stars-url]: https://github.com/abrarzaman2003/optimal_gainz2/stargazers
+[issues-shield]: https://img.shields.io/github/issues/abrarzaman2003/optimal_gainz2.svg?style=for-the-badge
+[issues-url]: https://github.com/abrarzaman2003/optimal_gainz2/issues
+[license-shield]: https://img.shields.io/github/license/abrarzaman2003/optimal_gainz2.svg?style=for-the-badge
+[license-url]: https://github.com/abrarzaman2003/optimal_gainz2/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
+[linkedin-url-1]: https://linkedin.com/in/linkedin_username
+[linkedin-url-2]: https://linkedin.com/in/linkedin_username
+[linkedin-url-3]: https://linkedin.com/in/linkedin_username
+[linkedin-url-4]: https://linkedin.com/in/linkedin_username
+[linkedin-url-5]: https://linkedin.com/in/linkedin_username
 [product-screenshot]: images/Login-Screen.png
 [React-Native]: https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB
 [reactnative-url]: https://reactnative.dev
