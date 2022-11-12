@@ -1,6 +1,6 @@
 //const app = require('./index');
 import { logIn } from "./firebaseAuth";
-import {createObject, fetchObject} from './fireStoreController';
+import {createObject, fetchObject, createWorkout} from './fireStoreController';
 import { register } from "./firebaseAuth";
 
 export function registerUser(email, password, retypedPassword) {
@@ -25,9 +25,10 @@ export async function loginUser(email, password){
     }
     try{
         const a = await logIn(email,password);
-        console.log("a object: ")
+        console.log("a object: ", a);
         console.log(await a);
         const b = await fetchObject(a);
+        console.log("b object: ", b);
         return true;
     }catch(e){
         console.error(e);
@@ -75,6 +76,37 @@ export async function makeUser(email, password, retypedPassword, age,bodyweight,
     }
     
     
+}
+
+
+
+export function checkWorkoutMax(pounds, sets, reps){
+
+    if (sets < 1 || sets > 30){
+        return "invalid sets, must be between 1 and 30";
+    }
+
+    if (pounds < 1 || pounds > 600){
+        return "invalid weights (lbs), must be between 1 and 600";
+    }
+
+    if (reps < 5 || reps > 40){
+        return "invalid reps, must be between 1 and 40";
+    }
+
+    return ("Workout Input information Successful")
+}
+
+
+export async function makeWorkout(workoutName,workoutType,workoutDate,workoutTime,workoutDuration,workoutNotes, workoutSets, workoutReps, workoutWeights) {
+
+    try {
+        const res = await createWorkout(workoutName,workoutType,workoutDate,workoutTime,workoutDuration,workoutNotes, workoutSets, workoutReps, workoutWeights);
+        return true;
+    } catch (error) {
+        console.error("making workout error: ", error);
+    }
+
 }
 
  

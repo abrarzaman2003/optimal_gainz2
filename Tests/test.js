@@ -1,4 +1,4 @@
-import {loginUser,registerUser,personalInformationInput, makeUser} from '../Firebase/functions';
+import {loginUser,registerUser,personalInformationInput, makeUser, makeWorkout, checkWorkoutMax} from '../Firebase/functions';
 import {logIn} from '../Firebase/firebaseAuth'
 
 test('1 - registering valid usesr', () => {
@@ -65,7 +65,7 @@ test('attempting to enter invalid age', () =>{
 })
 
 test("creating a user", async () => {
-    email = "god@gmail.com";
+    email = "jonny@gmail.com";
     password = "P@ssword123";
     retypedPassword = "P@ssword123";
     age = 20;
@@ -117,6 +117,48 @@ test("logging in a user with invalid password", async () => {
 })
 
 
+/*
+*   Workout Tests
+*/
 
+test("Workout input", () =>{
+  pounds = 25;
+  reps = 30;
+  sets = 5;
+  expect(checkWorkoutMax(pounds, sets, reps)).toBe("Workout Input information Successful");
+})
+
+
+
+test('attemping to enter workout(sets, reps, lbs)', () =>{
+  pounds = 25;
+  reps = 30;
+  sets = 5;
+  expect(checkWorkoutMax(pounds, sets, reps)).toBe("Workout Input information Successful");
+})
+
+test("attempting to enter invalid weights", () =>{
+
+  pounds = 999;
+  reps = 30;
+  sets = 5;
+  expect(checkWorkoutMax(pounds, sets, reps)).toBe("invalid weights (lbs), must be between 1 and 600");
+})
+// Once ran, creates a subcollection wtihin the user collection
+test("creating workout for user", async () => {
+  workoutName = "Dumbells Incline Press",
+  workoutType = "Compound Exercise",
+  workoutDate = "2022-11-11",
+  workoutTime = "10:00 P.M",
+  workoutDuration = "30min",
+  workoutNotes = "Keep a tight grip on the bar at all times, a tighter grip equates to more tension in the lower arms, upper back and chest."
+  workoutSets = 3, 
+  workoutReps = 8, 
+  workoutWeights = "40 lbs"
+
+
+  const data = await makeWorkout(workoutName,workoutType,workoutDate,workoutTime,workoutDuration,workoutNotes,workoutSets, workoutReps, workoutWeights);
+  expect(data).toBe(true)
+})
 
 
