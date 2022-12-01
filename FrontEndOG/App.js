@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { Pressable, View, Text, TextInput, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-function Register() {
+function Landing( {navigation} ) {
   return (
     <View 
       style={{
@@ -22,10 +22,12 @@ function Register() {
         alignItems: "center",
         flex: 1,
       }}>
-        <Text style={{
+        <Pressable onPress={() => navigation.navigate("Login")}>
+          <Text style={{
           fontSize: 28,
           fontFamily: "Futura",
         }}>Login</Text>
+          </Pressable>
         </View>
       <View 
       style={{
@@ -34,10 +36,12 @@ function Register() {
         alignItems: "center",
         flex: 0.7,
       }}>
-        <Text style={{
+        <Pressable onPress={() => navigation.navigate("Register")}>
+          <Text style={{
           fontSize: 28,
           fontFamily: "Futura",
         }}>Register</Text>
+          </Pressable>
         </View>
       <View 
       style={{
@@ -48,7 +52,173 @@ function Register() {
   );
 }
 
-function HomeScreen() {
+function Login( {navigation} ) {
+  return (
+    <View 
+      style={{
+        flex: 1,
+    }}>
+      <View style={{
+        backgroundColor: "dodgerblue",
+        flex: 1,
+      }}/>
+      <View style={{
+        backgroundColor: "tomato",
+        flex: 1,
+        alignContent: "center",
+        justifyContent: "center",
+        padding: 100,
+      }}>
+        <View>
+          <Text style={{
+            fontFamily: "Arial",
+            fontSize: 48,
+            textAlign: "center",
+          }}>Login</Text>
+        </View>
+        {/* Space */}
+        <View style={{
+          padding: 20,
+        }}/>
+        <TextInput style={{
+          height: 40,
+          borderColor: "gray",
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 15, 
+        }}
+        placeholder="Username"
+        />
+        {/* Space */}
+        <View style={{
+          padding: 5,
+        }}/>
+        <TextInput style={{
+          height: 40,
+          borderColor: 'gray',
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 15,
+        }}
+        placeholder="Password"
+        />
+        <View style={{
+          padding: 5,
+        }}/>
+        <Button
+        title="Login"
+        onPress={() =>
+          navigation.navigate('Home')
+        }
+        />
+        </View>
+      <View style={{
+        backgroundColor: "dodgerblue",
+        flex: 1,
+      }}/>
+    </View>
+  );
+}
+
+function Register( {navigation} ) {
+  return (
+    <View 
+      style={{
+        flex: 1,
+    }}>
+      <View style={{
+        backgroundColor: "dodgerblue",
+        flex: 1,
+      }}/>
+      <View style={{
+        backgroundColor: "tomato",
+        flex: 1,
+        alignContent: "center",
+        justifyContent: "center",
+        padding: 100,
+      }}>
+        <View>
+          <Text style={{
+            fontFamily: "Arial",
+            fontSize: 48,
+            textAlign: "center",
+          }}>Register</Text>
+        </View>
+        {/* Space */}
+        <View style={{
+          padding: 20,
+        }}/>
+        <TextInput style={{
+          height: 40,
+          borderColor: "gray",
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 15, 
+        }}
+        placeholder="Username"
+        />
+        {/* Space */}
+        <View style={{
+          padding: 5,
+        }}/>
+        <TextInput style={{
+          height: 40,
+          borderColor: 'gray',
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 15,
+        }}
+        placeholder="E-Mail Address"
+        />
+        <View style={{
+          padding: 5,
+        }}/>
+        <TextInput style={{
+          height: 40,
+          borderColor: 'gray',
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 15,
+        }}
+        placeholder="Password"
+        />
+        <View style={{
+          padding: 5,
+        }}/>
+        <TextInput style={{
+          height: 40,
+          borderColor: 'gray',
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 15,
+        }}
+        placeholder="Re-type Password"
+        />
+        <View style={{
+          padding: 5,
+        }}/>
+        <Button
+        title="Register"
+        onPress={() =>
+          navigation.navigate("Login")
+        }
+        />
+        </View>
+      <View style={{
+        backgroundColor: "dodgerblue",
+        flex: 1,
+      }}/>
+    </View>
+  );
+}
+
+function Home() {
   return (
     <View 
       style={{
@@ -65,8 +235,10 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Start" component={Register} />
-        <Stack.Screen name="Welcome" component={HomeScreen} />
+        <Stack.Screen name="Welcome" component={Landing} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
   );
