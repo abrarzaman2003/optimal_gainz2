@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, View, Text, TextInput, Button } from 'react-native';
+import { StyleSheet, Pressable, View, Text, TextInput, Button, ScrollView, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -88,7 +88,7 @@ function Login( {navigation} ) {
           padding: 15,
           borderRadius: 15, 
         }}
-        placeholder="Username"
+        placeholder="Full Name"
         />
         {/* Space */}
         <View style={{
@@ -220,12 +220,20 @@ function Register( {navigation} ) {
 
 function Home() {
   return (
-    <View 
-      style={{
-        backgroundColor: "purple",
-        flex: 1,
-    }}>
-    </View>
+    <SafeAreaView style={styles.home}>
+      <ScrollView style={styles.grid}>
+        {/* Here is scrollable body */}
+        <Text style={styles.text}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </Text>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -243,5 +251,24 @@ function App() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  home: {
+      backgroundColor: "purple",
+      flex: 2,
+      alignItems: "center",
+  },
+
+  text: {
+      fontFamily: "Futura",
+      fontSize: 84,
+  },
+
+  grid: {
+    flex: 2,
+    width: "90%",
+    backgroundColor: "gray",
+  },
+});
 
 export default App;
