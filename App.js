@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
 import { testing } from './Firebase/firebase.js';
 import { logIn, register } from './Firebase/firebaseAuth.js';
 import {createObject} from './Firebase/fireStoreController';
