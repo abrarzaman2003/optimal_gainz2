@@ -5,30 +5,27 @@ import { testing } from './Firebase/firebase.js';
 import { logIn, register } from './Firebase/firebaseAuth.js';
 import {createObject} from './Firebase/fireStoreController';
 import { loginUser, makeUser } from './Firebase/functions.js';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App() {
-  const onPressLearnMore = async () =>{
-    const a = await loginUser("bob@gmail.com","P@ssword123");
-  }
+function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working!</Text>
-      <StatusBar style="auto" />
-      <Button
-        onPress={onPressLearnMore}
-        title="Learn More"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-      />
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen</Text>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
