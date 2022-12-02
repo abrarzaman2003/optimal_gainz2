@@ -4,7 +4,7 @@
 //const serviceAccount = require('./optimal-gainz-firebase-adminsdk-8pphk-3f8b8778b7.json');
 
 import { db } from './firebase';
-import { collection, addDoc, setDoc,doc, getDoc } from "firebase/firestore"; 
+import { collection, addDoc, setDoc,doc, getDoc, query,where } from "firebase/firestore"; 
   
 //const db = getFirestore();
 
@@ -105,6 +105,64 @@ export const createWorkout = async (workoutName,workoutType,workoutDate,workoutT
     }
 
 }
+
+/*
+*   This function will retrieve a workout object from the database
+*   @param {string} uid - the user id of the user who created the workout
+*   @param {string} workoutName - the name of the workout
+*   @return {object} - the workout object
+*/
+
+
+export const fetchWorkout = async (email, workoutName) =>
+{
+
+  
+    const userRef = doc(db, "users", email );
+    const docRef = collection(userRef, "workouts");
+    try {
+        console.log('clg fw userRef: ', userRef);
+        console.log('clg docRef fw: ', docRef);
+        const workoutRef = await getDoc(docRef);
+        console.log('clg fetchworkout ', workoutRef);
+        return workoutRef.data();
+    } catch (error) {
+        console.log('Unable to fetch a workout due to: ',error);
+    }
+}
+
+
+export const editWorkout = async (workoutSets, workoutReps, workoutWeights) =>
+
+{
+    const docRef = doc(db, "users", "Kgby8IbfypPUsTA2gQ148p0l65l2");
+    console.log('clg editwork docref: ', docRef);
+    // const q = query(docRef, where(email, "==", "azaman@gmail.com"));
+    // console.log('clg q: ', q);
+    // const payload = collection(q, "workouts");
+    // const colRef = collection(docRef, "workouts", "==", "EHFr9XL6x4rXgAwbx3zw");
+    const colRef = doc(docRef, "workouts","EHFr9XL6x4rXgAwbx3zw");
+    console.log('clg colref edit: ', colRef);
+    // const q2 = query(colRef, where("workouts", "==", "EHFr9XL6x4rXgAwbx3zw"));
+
+    // console.log('clg payload where: ', q2);
+    try {
+            
+    const editObj = {
+        workoutReps: workoutReps,
+        workoutSets: workoutSets,
+        workoutWeights: workoutWeights
+    }
+    await setDoc(colRef,editObj, {merge: true});
+    return editObj
+
+
+    } catch (error) {
+        console.log('Unable to edit a workout due to: ',error);
+    }
+
+}
+
 //module.exports = {authenticate,createObject};
 
 

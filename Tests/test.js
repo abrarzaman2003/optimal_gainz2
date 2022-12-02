@@ -1,5 +1,6 @@
-import {loginUser,registerUser,personalInformationInput, makeUser, makeWorkout, checkWorkoutMax} from '../Firebase/functions';
+import {loginUser,registerUser,personalInformationInput, makeUser, makeWorkout, checkWorkoutMax, getWorkoutData, editWorkoutInfo} from '../Firebase/functions';
 import {logIn} from '../Firebase/firebaseAuth'
+import { fetchWorkout, editWorkout } from '../Firebase/fireStoreController';
 
 test('1 - registering valid usesr', () => {
     email = "abrarzaman2003@gmail.com";
@@ -121,44 +122,64 @@ test("logging in a user with invalid password", async () => {
 *   Workout Tests
 */
 
-test("Workout input", () =>{
-  pounds = 25;
-  reps = 30;
-  sets = 5;
-  expect(checkWorkoutMax(pounds, sets, reps)).toBe("Workout Input information Successful");
+// test("Workout input", () =>{
+//   pounds = 25;
+//   reps = 30;
+//   sets = 5;
+//   expect(checkWorkoutMax(pounds, sets, reps)).toBe("Workout Input information Successful");
+// })
+
+
+
+// test('attemping to enter workout(sets, reps, lbs)', () =>{
+//   pounds = 25;
+//   reps = 30;
+//   sets = 5;
+//   expect(checkWorkoutMax(pounds, sets, reps)).toBe("Workout Input information Successful");
+// })
+
+// test("attempting to enter invalid weights", () =>{
+
+//   pounds = 999;
+//   reps = 30;
+//   sets = 5;
+//   expect(checkWorkoutMax(pounds, sets, reps)).toBe("invalid weights (lbs), must be between 1 and 600");
+// })
+// // Once ran, creates a subcollection wtihin the user collection
+// test("creating workout for user", async () => {
+//   workoutName = "Dumbells Incline Press",
+//   workoutType = "Compound Exercise",
+//   workoutDate = "2022-11-11",
+//   workoutTime = "10:00 P.M",
+//   workoutDuration = "30min",
+//   workoutNotes = "Keep a tight grip on the bar at all times, a tighter grip equates to more tension in the lower arms, upper back and chest."
+//   workoutSets = 3, 
+//   workoutReps = 8, 
+//   workoutWeights = "40 lbs"
+
+
+//   const data = await makeWorkout(workoutName,workoutType,workoutDate,workoutTime,workoutDuration,workoutNotes,workoutSets, workoutReps, workoutWeights);
+//   expect(data).toBe(true)
+// })
+
+
+// Test to retrieve all workouts for a user
+// test("retrieving all workouts for a user", async () => {
+//   const data = await fetchWorkout();
+//   expect(data).toBe(true)
+// }
+// )
+
+
+
+// edit workoutInfo
+test("editing workout for user", async (workoutSets, workoutReps, workoutWeights) => {
+
+  workoutSets = "2", 
+  workoutReps = "21", 
+  workoutWeights = "21 lbs"
+
+
+  const data = await editWorkout(workoutSets, workoutReps, workoutWeights);
+  expect(data).toBe(Object)
 })
-
-
-
-test('attemping to enter workout(sets, reps, lbs)', () =>{
-  pounds = 25;
-  reps = 30;
-  sets = 5;
-  expect(checkWorkoutMax(pounds, sets, reps)).toBe("Workout Input information Successful");
-})
-
-test("attempting to enter invalid weights", () =>{
-
-  pounds = 999;
-  reps = 30;
-  sets = 5;
-  expect(checkWorkoutMax(pounds, sets, reps)).toBe("invalid weights (lbs), must be between 1 and 600");
-})
-// Once ran, creates a subcollection wtihin the user collection
-test("creating workout for user", async () => {
-  workoutName = "Dumbells Incline Press",
-  workoutType = "Compound Exercise",
-  workoutDate = "2022-11-11",
-  workoutTime = "10:00 P.M",
-  workoutDuration = "30min",
-  workoutNotes = "Keep a tight grip on the bar at all times, a tighter grip equates to more tension in the lower arms, upper back and chest."
-  workoutSets = 3, 
-  workoutReps = 8, 
-  workoutWeights = "40 lbs"
-
-
-  const data = await makeWorkout(workoutName,workoutType,workoutDate,workoutTime,workoutDuration,workoutNotes,workoutSets, workoutReps, workoutWeights);
-  expect(data).toBe(true)
-})
-
-

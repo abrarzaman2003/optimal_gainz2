@@ -1,6 +1,6 @@
 //const app = require('./index');
 import { logIn } from "./firebaseAuth";
-import {createObject, fetchObject, createWorkout} from './fireStoreController';
+import {createObject, fetchObject, createWorkout, fetchWorkout,editWorkout} from './fireStoreController';
 import { register } from "./firebaseAuth";
 
 export function registerUser(email, password, retypedPassword) {
@@ -109,4 +109,28 @@ export async function makeWorkout(workoutName,workoutType,workoutDate,workoutTim
 
 }
 
- 
+// retriev workout data from firestore
+
+export async function getWorkoutData() {
+    console.log('GW: FUNCTIONS: ', fetchWorkout());
+    try {
+        const res = await fetchWorkout();
+        console.log('clg get workotu data from firebase: ', res);
+        return res;
+    } catch (error) {
+        console.error("getting workout error: ", error);
+    }
+}
+
+
+export async function editWorkoutInfo(workoutSets, workoutReps, workoutWeights) {
+
+    try {
+        const res = await editWorkout(workoutSets, workoutReps, workoutWeights);
+        console.log('clg editworkoutinfo: ', res)
+        return true;
+    } catch (error) {
+        console.error("editing workout error: ", error);
+    }
+
+}
