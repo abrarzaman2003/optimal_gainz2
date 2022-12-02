@@ -1,7 +1,9 @@
 import React from 'react';
-import { StyleSheet, Pressable, View, Text, TextInput, Button, ScrollView, SafeAreaView } from 'react-native';
+import { Keyboard, StyleSheet, Pressable, View, Text, TextInput, Button, ScrollView, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+//npm i -S react-native-swipe-gestures
 
 function Landing( {navigation} ) 
 {
@@ -201,7 +203,7 @@ function Register( {navigation} ) {
           padding: 5,
         }}/>
         <Button
-        title="Register"
+        title="Submit"
         onPress={() =>
           navigation.navigate("Login")
         }
@@ -218,34 +220,106 @@ function Register( {navigation} ) {
 function Home( {navigation} ) {
   return (
     <SafeAreaView style={styles.home}>
-      <ScrollView style={[styles.grid]}>
+      <ScrollView style={styles.grid} contentContainerStyle={{justifyContent: "center"}}>
         {/* Here is scrollable body */}
-        <Greeting name="Abrar"/>
-        <Text style={styles.text}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Text>
         <View style={{
-        height: "2.5%",
-        }}
-        />
-        <Pressable>
-          <Text style={{
-            fontSize: 24,
+          flexDirection: "row",
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+        }}>
+          <Greeting time="morning" name="Abrar"/>
+        </View>
+        <View style={{
+          flexDirection: "row",
+        }}>
+          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+            <Text style={styles.text}>
+              Item1
+            </Text>
+          </Pressable>
+          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+            <Text style={styles.text}>
+              Item2
+            </Text>
+          </Pressable>
+        </View>
+        <View style={{
+          flexDirection: "row",
+        }}>
+          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+            <Text style={styles.text}>
+              Item3
+            </Text>
+          </Pressable>
+          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+            <Text style={styles.text}>
+              Item4
+            </Text>
+          </Pressable>
+        </View>
+        <View style={{
+          flexDirection: "row",
+        }}>
+          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+            <Text style={styles.text}>
+              Item5
+            </Text>
+          </Pressable>
+          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+            <Text style={styles.text}>
+              Item6
+            </Text>
+          </Pressable>
+        </View>
+        <View style={{
+          flexDirection: "row",
+        }}>
+          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+            <Text style={styles.text}>
+              Item7
+            </Text>
+          </Pressable>
+          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+            <Text style={styles.text}>
+              Item8
+            </Text>
+          </Pressable>
+        </View>
+        <View style={{
+          flexDirection: "row",
+        }}>
+          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+            <Text style={styles.text}>
+              Item9
+            </Text>
+          </Pressable>
+          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+            <Text style={styles.text}>
+              Item10
+            </Text>
+          </Pressable>
+        </View>
+        <View style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          margin: "2.5%",
+          marginHorizontal: "10%",
+        }}>
+          <Pressable onPress={() => navigation.navigate("Create Custom Workout")}
+          style={{
+          backgroundColor: "gold",
+          justifyContent: "center",
+          alignItems: "center",
+          flex: 1,
+          borderRadius: 10,
           }}>
-            Create custom workout
-          </Text>
-        </Pressable>
-        <View style={{
-          backgroundColor: "purple",
-          height: "2.5%",
-        }}
-        />
+            <View>
+              <Text style={{fontSize: 48,}}>Add workout</Text>
+            </View>
+          </Pressable>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -253,12 +327,90 @@ function Home( {navigation} ) {
 
 function WorkoutInformation( {navigation} )
 {
-
+  return(
+    <GestureRecognizer style={{
+      backgroundColor: "dodgerblue",
+      flex: 1,
+      alignItems: "center"}}
+      onSwipeLeft={() => navigation.navigate("Home")}
+      onPress={() => navigation.navigate("Home")}
+      >
+      <View style={{backgroundColor: "dodgerblue", flex: 0.5, alignItems: "center", justifyContent: "center"}}>
+        <Text style={{fontSize: 48,}}> Workout Title </Text>
+      </View>
+      <View style={{
+        backgroundColor: "tomato",
+        flex: 1.5,
+        borderRadius: 15,
+        width: "90%",}}>
+        <Text style={{fontSize: 22, padding: "5%",}} adjustsFontSizeToFit={true}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+        ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id 
+        est laborum.</Text>
+      </View>
+      <View style={{backgroundColor: "dodgerblue", flex: 0.3}}></View>
+    </GestureRecognizer>
+  );
 }
 
 function CreateCustomWorkout( {navigation} )
 {
-
+  return(
+    <View style={{
+      backgroundColor: "dodgerblue",
+      flex: 1,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      alignContent: "center",
+      }}>
+        <View style={{
+          backgroundColor: "gold",
+          flex: 0.3,
+          paddingHorizontal: "2.5%",
+          width: "50%",
+          borderRadius: 20,
+        }}>
+          <View style={{marginTop: "15%",}}/>
+          <TextInput style={{
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 5, 
+          }}
+          placeholder="Title"
+          />
+          <View style={{padding: 5,}}/>
+          <TextInput style={{
+            height: "40%",
+            borderwidth: 1,
+            backgroundColor: "#fff",
+            padding: 15,
+            borderRadius: 5,
+          }}
+          //this one word allows you to type more than one line
+          multiline
+          placeholder="Description"
+          />
+          <Pressable onPress={() => navigation.navigate("Home")}
+            style={{
+              marginTop: "5%",
+              marginLeft: "65%",
+              borderRadius: 10,
+              height: 40,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "silver",
+            }}>
+            <Text style={{fontSize: 20,}}>Submit</Text>
+          </Pressable>
+        </View>
+    </View>
+  );
 }
 
 function Center( {navigation} )
@@ -272,7 +424,7 @@ function Center( {navigation} )
       <View 
       style={{
         backgroundColor: "dodgerblue",
-        flex: 7,
+        flex: 1,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -323,7 +475,15 @@ function Center( {navigation} )
 const Greeting = (props) => {
   return (
     <View>
-      <Text>Hello, {props.name}!</Text>
+      <Text style={{fontSize: 48,}}>Good {props.time}, {props.name}!</Text>
+    </View>
+  );
+}
+
+const WorkoutName = (props) => {
+  return (
+    <View>
+      <Text style={{fontSize: 48,}}>{props.name}</Text>
     </View>
   );
 }
@@ -339,6 +499,8 @@ function App() {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Workout" component={WorkoutInformation} />
+        <Stack.Screen name="Create Custom Workout" component={CreateCustomWorkout} />
       </Stack.Navigator>
       {/*<Text style={{
         fontSize: 36,
@@ -368,6 +530,15 @@ const styles = StyleSheet.create({
     width: "90%",
     backgroundColor: "gray",
   },
+
+  griditem: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "white",
+    borderColor: "salmon",
+    borderWidth: 5,
+  }
 });
 
 export default App;
