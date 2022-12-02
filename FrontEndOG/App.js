@@ -3,7 +3,8 @@ import { StyleSheet, Pressable, View, Text, TextInput, Button, ScrollView, SafeA
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-function Landing( {navigation} ) {
+function Landing( {navigation} ) 
+{
   return (
     <View 
       style={{
@@ -15,34 +16,30 @@ function Landing( {navigation} ) {
         backgroundColor: "dodgerblue",
         flex: 7,
       }} />
-      <View 
+      <Pressable onPress={() => navigation.navigate("Login")}
       style={{
         backgroundColor: "gold",
         justifyContent: "center",
         alignItems: "center",
         flex: 1,
       }}>
-        <Pressable onPress={() => navigation.navigate("Login")}>
-          <Text style={{
+        <Text style={{
           fontSize: 28,
           fontFamily: "Futura",
         }}>Login</Text>
-          </Pressable>
-        </View>
-      <View 
+        </Pressable>
+      <Pressable onPress={() => navigation.navigate("Register")}
       style={{
         backgroundColor: "tomato",
         justifyContent: "center",
         alignItems: "center",
         flex: 0.7,
       }}>
-        <Pressable onPress={() => navigation.navigate("Register")}>
-          <Text style={{
+        <Text style={{
           fontSize: 28,
           fontFamily: "Futura",
         }}>Register</Text>
-          </Pressable>
-        </View>
+        </Pressable>
       <View 
       style={{
         backgroundColor: "dodgerblue",
@@ -218,11 +215,12 @@ function Register( {navigation} ) {
   );
 }
 
-function Home() {
+function Home( {navigation} ) {
   return (
     <SafeAreaView style={styles.home}>
-      <ScrollView style={styles.grid}>
+      <ScrollView style={[styles.grid]}>
         {/* Here is scrollable body */}
+        <Greeting name="Abrar"/>
         <Text style={styles.text}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -232,8 +230,101 @@ function Home() {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </Text>
+        <View style={{
+        height: "2.5%",
+        }}
+        />
+        <Pressable>
+          <Text style={{
+            fontSize: 24,
+          }}>
+            Create custom workout
+          </Text>
+        </Pressable>
+        <View style={{
+          backgroundColor: "purple",
+          height: "2.5%",
+        }}
+        />
       </ScrollView>
     </SafeAreaView>
+  );
+}
+
+function WorkoutInformation( {navigation} )
+{
+
+}
+
+function CreateCustomWorkout( {navigation} )
+{
+
+}
+
+function Center( {navigation} )
+{
+  return (
+    <View 
+      style={{
+        backgroundColor: "purple",
+        flex: 1,
+    }}>
+      <View 
+      style={{
+        backgroundColor: "dodgerblue",
+        flex: 7,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        alignContent: "center",
+      }}>
+      <View 
+      style={{
+        backgroundColor: "gray",
+        justifyContent: "center",
+        alignItems: "center",
+        flex: 0.3,
+        width: "50%",
+      }}>
+        <View style={{
+          backgroundColor: "gold",
+          flex: 1,
+          width: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+          <Pressable onPress={() => navigation.navigate("Login")}>
+          <Text style={{
+          fontSize: 28,
+          fontFamily: "Futura",
+            }}>Login</Text>
+          </Pressable>
+        </View>
+        <View style={{
+          backgroundColor: "tomato",
+          flex: 1,
+          width: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+          <Pressable onPress={() => navigation.navigate("Register")}>
+          <Text style={{
+          fontSize: 28,
+          fontFamily: "Futura",
+            }}>Register</Text>
+          </Pressable>
+        </View>
+        </View>
+      </View>
+    </View>
+  );
+}
+
+const Greeting = (props) => {
+  return (
+    <View>
+      <Text>Hello, {props.name}!</Text>
+    </View>
   );
 }
 
@@ -243,11 +334,17 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        {/* <Stack.Screen name="Center" component={Center} /> */}
         <Stack.Screen name="Welcome" component={Landing} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
+      {/*<Text style={{
+        fontSize: 36,
+      }}>
+        Hidden Navbar
+      </Text> */}
     </NavigationContainer>
   );
 }
@@ -261,7 +358,9 @@ const styles = StyleSheet.create({
 
   text: {
       fontFamily: "Futura",
-      fontSize: 84,
+      fontSize: 68,
+      alignItems: "center",
+      justifyContent: "center",
   },
 
   grid: {
