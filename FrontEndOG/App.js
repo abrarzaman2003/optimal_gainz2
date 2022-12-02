@@ -106,7 +106,7 @@ function Login( {navigation} ) {
         <View style={{
           padding: 5,
         }}/>
-        <Button
+        <Button //TODO: clicking login should verify user input and allow login
         title="Login"
         onPress={() =>
           navigation.navigate('Home')
@@ -202,8 +202,8 @@ function Register( {navigation} ) {
         <View style={{
           padding: 5,
         }}/>
-        <Button
-        title="Submit"
+        <Button      //TODO: clicking button should verify input and create user account
+        title="Submit" //...currently already takes user to login page
         onPress={() =>
           navigation.navigate("Login")
         }
@@ -218,6 +218,8 @@ function Register( {navigation} ) {
 }
 
 function Home( {navigation} ) {
+  //TODO: clicking on a gridItem should bring up reps/sets/weight ui (ref Figma)
+  //TODO: long pressing a gridItem should take to a unique info page
   return (
     <SafeAreaView style={styles.home}>
       <ScrollView style={styles.grid} contentContainerStyle={{justifyContent: "center"}}>
@@ -233,12 +235,12 @@ function Home( {navigation} ) {
         <View style={{
           flexDirection: "row",
         }}>
-          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
             <Text style={styles.text}>
               Item1
             </Text>
           </Pressable>
-          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
             <Text style={styles.text}>
               Item2
             </Text>
@@ -247,12 +249,12 @@ function Home( {navigation} ) {
         <View style={{
           flexDirection: "row",
         }}>
-          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
             <Text style={styles.text}>
               Item3
             </Text>
           </Pressable>
-          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
             <Text style={styles.text}>
               Item4
             </Text>
@@ -261,12 +263,12 @@ function Home( {navigation} ) {
         <View style={{
           flexDirection: "row",
         }}>
-          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
             <Text style={styles.text}>
               Item5
             </Text>
           </Pressable>
-          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
             <Text style={styles.text}>
               Item6
             </Text>
@@ -275,12 +277,12 @@ function Home( {navigation} ) {
         <View style={{
           flexDirection: "row",
         }}>
-          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
             <Text style={styles.text}>
               Item7
             </Text>
           </Pressable>
-          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
             <Text style={styles.text}>
               Item8
             </Text>
@@ -289,12 +291,12 @@ function Home( {navigation} ) {
         <View style={{
           flexDirection: "row",
         }}>
-          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
             <Text style={styles.text}>
               Item9
             </Text>
           </Pressable>
-          <Pressable style={styles.griditem} onPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
             <Text style={styles.text}>
               Item10
             </Text>
@@ -360,6 +362,9 @@ function WorkoutInformation( {navigation} )
 function CreateCustomWorkout( {navigation} )
 {
   return(
+    //TODO: clicking submit should verify text fields and store data in DB
+    //TODO: when typing in the big textInput,
+    //      you need to be able to tap somewhere to dismiss the keyboard
     <View style={{
       backgroundColor: "dodgerblue",
       flex: 1,
