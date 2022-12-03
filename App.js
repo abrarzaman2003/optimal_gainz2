@@ -463,7 +463,7 @@ function CreateCustomWorkout( {navigation} )
           padding: 15,
           borderRadius: 5, 
           }}
-          placeholder="Title"
+          placeholder="Workout Name( ex. Squats)"
           onChangeText={newText => setWorkoutName(newText)}
           />
           <View style={{padding: 5,}}/>
@@ -485,7 +485,7 @@ function CreateCustomWorkout( {navigation} )
           padding: 15,
           borderRadius: 5, 
           }}
-          placeholder="Title"
+          placeholder="Workout Date"
           onChangeText={newText => setWorkoutDate(newText)}
           />
                     <TextInput style={{
@@ -494,7 +494,7 @@ function CreateCustomWorkout( {navigation} )
           padding: 15,
           borderRadius: 5, 
           }}
-          placeholder="Title"
+          placeholder="Workout Time"
           onChangeText={newText => setWorkoutTime(newText)}
           />
                     <TextInput style={{
@@ -503,7 +503,7 @@ function CreateCustomWorkout( {navigation} )
           padding: 15,
           borderRadius: 5, 
           }}
-          placeholder="Title"
+          placeholder="Duration"
           onChangeText={newText => setWorkoutDuration(newText)}
           />
                               <TextInput style={{
@@ -512,7 +512,7 @@ function CreateCustomWorkout( {navigation} )
           padding: 15,
           borderRadius: 5, 
           }}
-          placeholder="Title"
+          placeholder="Description of workout"
           onChangeText={newText => setWorkoutNotes(newText)}
           />
                     <TextInput style={{
@@ -521,7 +521,7 @@ function CreateCustomWorkout( {navigation} )
           padding: 15,
           borderRadius: 5, 
           }}
-          placeholder="Title"
+          placeholder="Sets"
           onChangeText={newText => setWorkoutSets(newText)}
           />
                               <TextInput style={{
