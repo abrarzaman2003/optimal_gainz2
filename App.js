@@ -3,7 +3,7 @@ import { Keyboard, StyleSheet, Pressable, View, Text, TextInput, Button, ScrollV
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
-import { loginUser, makeUser } from './Firebase/functions';
+import { getWorkoutInfo, loginUser, makeUser } from './Firebase/functions';
 //npm i -S react-native-swipe-gestures
 
 
@@ -282,77 +282,53 @@ function Home( {route, navigation} ) {
           alignItems: "center",
           justifyContent: "center",
         }}>
-          <Greeting time="morning" name="Abrar"/>
+          <Greeting time="morning" name={route.params.username}/>
         </View>
         <View style={{
           flexDirection: "row",
         }}>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "0uLUSzQgA4kMpC54Dd9a"})}>
             <Text style={styles.text}>
-              Item1
+              Dumbells Incline Press
             </Text>
           </Pressable>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "0uLUSzQgA4kMpC54Dd9a"})}>
             <Text style={styles.text}>
-              Item2
-            </Text>
-          </Pressable>
-        </View>
-        <View style={{
-          flexDirection: "row",
-        }}>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
-            <Text style={styles.text}>
-              Item3
-            </Text>
-          </Pressable>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
-            <Text style={styles.text}>
-              Item4
+              Bench Press
             </Text>
           </Pressable>
         </View>
         <View style={{
           flexDirection: "row",
         }}>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "0uLUSzQgA4kMpC54Dd9a"})}>
             <Text style={styles.text}>
-              Item5
+              Dumbell Bench Press
             </Text>
           </Pressable>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "0uLUSzQgA4kMpC54Dd9a"})}>
             <Text style={styles.text}>
-              Item6
-            </Text>
-          </Pressable>
-        </View>
-        <View style={{
-          flexDirection: "row",
-        }}>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
-            <Text style={styles.text}>
-              Item7
-            </Text>
-          </Pressable>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
-            <Text style={styles.text}>
-              Item8
+              Military Press
             </Text>
           </Pressable>
         </View>
         <View style={{
           flexDirection: "row",
         }}>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "0uLUSzQgA4kMpC54Dd9a"})}>
             <Text style={styles.text}>
-              Item9
+              Overhead Press
             </Text>
           </Pressable>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "0uLUSzQgA4kMpC54Dd9a"})}>
             <Text style={styles.text}>
-              Item10
+              Romainian Deadlift
             </Text>
           </Pressable>
+        </View>
+        <View style={{
+          flexDirection: "row",
+        }}>
         </View>
         <View style={{
           flexDirection: "row",
@@ -379,8 +355,20 @@ function Home( {route, navigation} ) {
   );
 }
 
-function WorkoutInformation( {navigation} )
+function WorkoutInformation( {route, navigation} )
 {
+  const[workoutInfo, setWorkoutInfo] = useState({});
+  //const[loaded, setLoaded] = useState(false);
+
+  useEffect(()=>{
+    retrieveWorkoutInfo();
+  },[setWorkoutInfo]);
+  
+  const retrieveWorkoutInfo = async ()=>{
+    const w = await getWorkoutInfo(route.params.id);
+    setWorkoutInfo(w);
+    //setLoaded(true);
+  }
   return(
     <GestureRecognizer style={{
       backgroundColor: "dodgerblue",
@@ -390,7 +378,7 @@ function WorkoutInformation( {navigation} )
       onPress={() => navigation.navigate("Home")}
       >
       <View style={{backgroundColor: "dodgerblue", flex: 0.5, alignItems: "center", justifyContent: "center"}}>
-        <Text style={{fontSize: 48,}}> Workout Title </Text>
+        <Text style={{fontSize: 48,}}> {workoutInfo.workoutName} </Text>
       </View>
       <View style={{
         backgroundColor: "tomato",
@@ -398,13 +386,7 @@ function WorkoutInformation( {navigation} )
         borderRadius: 15,
         width: "90%",}}>
         <Text style={{fontSize: 22, padding: "5%",}} adjustsFontSizeToFit={true}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-        ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id 
-        est laborum.</Text>
+        {workoutInfo.workoutNotes}</Text>
       </View>
       <View style={{backgroundColor: "dodgerblue", flex: 0.3}}></View>
     </GestureRecognizer>
