@@ -33,6 +33,7 @@ export const createObject = async (email,age,weight,heightFt, heightIn,uid) =>{
 
     try {
         const object = {
+            id : uid,
             email: email,
             age: age,
             weight: weight,

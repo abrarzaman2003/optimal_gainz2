@@ -29,10 +29,10 @@ export async function loginUser(email, password){
         console.log(await a);
         const b = await fetchObject(a);
         console.log("b object: ", b);
-        return true;
+        return b;
     }catch(e){
         console.error(e);
-        return false;
+        return e;
     }
     
     //console.log(b);
