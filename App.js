@@ -3,8 +3,11 @@ import { Keyboard, StyleSheet, Pressable, View, Text, TextInput, Button, ScrollV
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+
 import { getWorkoutInfo, loginUser, makeUser } from './Firebase/functions';
-//npm i -S react-native-swipe-gestures
+import { loginUser } from './Firebase/functions';
+import { createWorkout } from './Firebase/fireStoreController';
+
 
 
 
@@ -270,7 +273,9 @@ function Register( {navigation} ) {
 function Home( {route, navigation} ) {
   //TODO: clicking on a gridItem should bring up reps/sets/weight ui (ref Figma)
   //TODO: long pressing a gridItem should take to a unique info page
+
   
+
   console.log("route params: ",route.params);
   return (
     <SafeAreaView style={styles.home}>
@@ -395,10 +400,45 @@ function WorkoutInformation( {route, navigation} )
 
 function CreateCustomWorkout( {navigation} )
 {
+  
+    const [initWorkoutName,setWorkoutName] = useState("");
+    const [initWorkoutType,setWorkoutType] = useState("");
+    const [initWorkoutDate,setWorkoutDate] = useState("");
+    const [initWorkoutTime,setWorkoutTime] = useState("");
+    const [initWorkoutDuration,setWorkoutDuration] = useState("");
+    const [initWorkoutNotes,setWorkoutNotes] = useState("");
+    const [initWorkoutSets,setWorkoutSets] = useState("");
+    const [initWorkoutReps,setWorkoutReps] = useState("");
+    const [initWorkoutWeights,setWorkoutWeights] = useState("");
+
+  const [workout, setWorkout] = useState({})
+  // const [loggedIn, setLoggedIn] = useState(false);
+  const createWrk = async () => {
+    console.log(initWorkoutName)
+    console.log(initWorkoutType)
+    const a = await createWorkout(initWorkoutName,initWorkoutType,initWorkoutDate, initWorkoutTime, initWorkoutDuration, initWorkoutNotes,
+      initWorkoutSets, initWorkoutReps, initWorkoutWeights);
+    console.log(a);
+    
+    if (typeof a === 'object'){
+      setWorkout(a);
+      // setLoggedIn(true);
+    }
+    
+
+  }
+  // useEffect(()=>{
+  //   if (loggedIn){
+  //     navigation.navigate('Home', {... user})
+  //   }
+  // },[loggedIn]);
+
+
   return(
     //TODO: clicking submit should verify text fields and store data in DB
     //TODO: when typing in the big textInput,
     //      you need to be able to tap somewhere to dismiss the keyboard
+
     <View style={{
       backgroundColor: "dodgerblue",
       flex: 1,
@@ -422,6 +462,7 @@ function CreateCustomWorkout( {navigation} )
           borderRadius: 5, 
           }}
           placeholder="Title"
+          onChangeText={newText => setWorkoutName(newText)}
           />
           <View style={{padding: 5,}}/>
           <TextInput style={{
@@ -433,9 +474,75 @@ function CreateCustomWorkout( {navigation} )
           }}
           //this one word allows you to type more than one line
           multiline
-          placeholder="Description"
+          placeholder="Workout Type(Chest, Back, Legs, etc.)"
+          onChangeText={newText => setWorkoutType(newText)}
           />
-          <Pressable onPress={() => navigation.navigate("Home")}
+                    <TextInput style={{
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 5, 
+          }}
+          placeholder="Title"
+          onChangeText={newText => setWorkoutDate(newText)}
+          />
+                    <TextInput style={{
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 5, 
+          }}
+          placeholder="Title"
+          onChangeText={newText => setWorkoutTime(newText)}
+          />
+                    <TextInput style={{
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 5, 
+          }}
+          placeholder="Title"
+          onChangeText={newText => setWorkoutDuration(newText)}
+          />
+                              <TextInput style={{
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 5, 
+          }}
+          placeholder="Title"
+          onChangeText={newText => setWorkoutNotes(newText)}
+          />
+                    <TextInput style={{
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 5, 
+          }}
+          placeholder="Title"
+          onChangeText={newText => setWorkoutSets(newText)}
+          />
+                              <TextInput style={{
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 5, 
+          }}
+          placeholder="Reps"
+          onChangeText={newText => setWorkoutReps(newText)}
+          />
+                    <TextInput style={{
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 5, 
+          }}
+          placeholder="Weights (lbs)"
+          onChangeText={newText => setWorkoutWeights(newText)}
+          />
+
+
+          <Pressable onPress={() => createWrk()}
             style={{
               marginTop: "5%",
               marginLeft: "65%",
@@ -444,6 +551,7 @@ function CreateCustomWorkout( {navigation} )
               justifyContent: "center",
               alignItems: "center",
               backgroundColor: "silver",
+              
             }}>
             <Text style={{fontSize: 20,}}>Submit</Text>
           </Pressable>
