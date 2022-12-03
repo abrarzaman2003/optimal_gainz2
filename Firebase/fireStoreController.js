@@ -132,19 +132,19 @@ export async function fetchWorkoutObject(uid){
 export async function editWorkout(userId, workoutId, workoutSets, workoutReps, workoutWeights)
 
 {
-    const docRef = await doc(db, "users", userId );
-    console.log('clg editwork docref: ', docRef);
-    // const q = query(docRef, where(email, "==", "azaman@gmail.com"));
-    // console.log('clg q: ', q);
-    // const payload = collection(q, "workouts");
-    // const colRef = collection(docRef, "workouts", "==", "EHFr9XL6x4rXgAwbx3zw");
-    const colRef = await doc(docRef, "workouts",workoutId);
-    console.log('clg colref edit: ', colRef);
+    
     // const q2 = query(colRef, where("workouts", "==", "EHFr9XL6x4rXgAwbx3zw"));
 
     // console.log('clg payload where: ', q2);
     try {
-            
+        const docRef = await doc(db, "users", userId);
+        console.log('clg editwork docref: ', docRef);
+        // const q = query(docRef, where(email, "==", "azaman@gmail.com"));
+        // console.log('clg q: ', q);
+        // const payload = collection(q, "workouts");
+        // const colRef = collection(docRef, "workouts", "==", "EHFr9XL6x4rXgAwbx3zw");
+        const colRef = await doc(docRef, "workouts",workoutId);
+        console.log('clg colref edit: ', colRef);
         const editObj = {
             workoutReps: workoutReps,
             workoutSets: workoutSets,

@@ -292,12 +292,12 @@ function Home( {route, navigation} ) {
         <View style={{
           flexDirection: "row",
         }}>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "0uLUSzQgA4kMpC54Dd9a"})}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "0uLUSzQgA4kMpC54Dd9a", userId:route.params.id})}>
             <Text style={styles.text}>
               Dumbells Incline Press
             </Text>
           </Pressable>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "vFFS36h72WL1tIS4F1t6"})}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "vFFS36h72WL1tIS4F1t6", userId:route.params.id})}>
             <Text style={styles.text}>
               Bench Press
             </Text>
@@ -311,7 +311,7 @@ function Home( {route, navigation} ) {
               Dumbell Bench Press
             </Text>
           </Pressable>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "yydSFEXHLPmCzLSmk1R1"})}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "yydSFEXHLPmCzLSmk1R1", userId:route.params.id})}>
             <Text style={styles.text}>
               Military Press
             </Text>
@@ -320,12 +320,12 @@ function Home( {route, navigation} ) {
         <View style={{
           flexDirection: "row",
         }}>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "w7kDr8dc9iG3vc1l4lYw"})}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "w7kDr8dc9iG3vc1l4lYw", userId:route.params.id})}>
             <Text style={styles.text}>
               Overhead Press
             </Text>
           </Pressable>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "Td0HuI9SBqyKH5CBYz0i"})}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "Td0HuI9SBqyKH5CBYz0i", userId:route.params.id})}>
             <Text style={styles.text}>
               Romainian Deadlift
             </Text>
@@ -375,9 +375,14 @@ function WorkoutInformation( {route, navigation} )
     //setLoaded(true);
   }
 
+  const[repCount, setRepCount] = useState(0);
+  const[setCount, setSetCount] = useState(0);
+  const[weight, setWeight] = useState(0);
+
   const testReps = async () =>{
     console.log("hi");
-    const a = await editWorkout(route.params.userId,route.params.id,1,1,10);
+    console.log(route.params.userId,route.params.id,setCount,repCount,weight);
+    const a = await editWorkout(route.params.userId,route.params.id,setCount,repCount,weight);
   }
   return(
     <GestureRecognizer style={{
@@ -398,6 +403,48 @@ function WorkoutInformation( {route, navigation} )
         <Text style={{fontSize: 22, padding: "5%",}} adjustsFontSizeToFit={true}>
         {workoutInfo.workoutNotes}</Text>
       </View>
+      <TextInput style={{
+          height: 40,
+          borderColor: 'gray',
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 15,
+        }}
+        onChangeText= {newText => setRepCount(newText)}
+        placeholder="Reps"
+        />
+        <View style={{
+          padding: 5,
+        }}/>
+        <TextInput style={{
+          height: 40,
+          borderColor: 'gray',
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 15,
+        }}
+        onChangeText= {newText => setSetCount(newText)}
+        placeholder="Sets"
+        />
+        <View style={{
+          padding: 5,
+        }}/>
+        <TextInput style={{
+          height: 40,
+          borderColor: 'gray',
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 15,
+        }}
+        onChangeText= {newText => setWeight(newText)}
+        placeholder="Weight"
+        />
+        <View style={{
+          padding: 5,
+        }}/>
       <Pressable onPress={testReps}
           style={{
           backgroundColor: "gold",
