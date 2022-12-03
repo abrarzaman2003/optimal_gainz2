@@ -1,6 +1,6 @@
 //const app = require('./index');
 import { logIn } from "./firebaseAuth";
-import {createObject, fetchObject, createWorkout} from './fireStoreController';
+import {createObject, fetchObject, createWorkout, fetchWorkoutObject} from './fireStoreController';
 import { register } from "./firebaseAuth";
 
 export function registerUser(email, password, retypedPassword) {
@@ -108,5 +108,46 @@ export async function makeWorkout(workoutName,workoutType,workoutDate,workoutTim
     }
 
 }
+// accepts a workout UID and returns the workout object
+export async function getWorkoutInfo(workoutUID){
+    const a = await fetchWorkoutObject(workoutUID);
+    console.log("object: ", a );
+    return await a;
+}
+
+export async function getWorkout(workoutUID){
+    if (workoutUID == "EzQJ4aIV6o4poWrk7IV4"){
+        return {
+            "uid": "EzQJ4aIV6o4poWrk7IV4",
+            "workoutDate": {
+              "nanoseconds": 718000000,
+              "seconds": 1669951042,
+            },
+            "workoutDuration": "a",
+            "workoutName": "A",
+            "workoutNotes": "a",
+            "workoutReps": "a",
+            "workoutSets": "a",
+            "workoutTime": "a",
+            "workoutType": "b",
+            "workoutWeights": "a",
+          }
+    }else{
+        return {}
+    }
+}
+
+export function editWorkOut(workoutSets, workoutReps, workoutWeights){
+    const editObj = {
+        workoutReps: workoutReps,
+        workoutSets: workoutSets,
+        workoutWeights: workoutWeights
+    }
+    //const x = await setDoc(colRef,editObj, {merge: true});
+    
+    return editObj
+}
+
+
 
  

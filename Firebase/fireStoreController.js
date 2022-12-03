@@ -4,7 +4,7 @@
 //const serviceAccount = require('./optimal-gainz-firebase-adminsdk-8pphk-3f8b8778b7.json');
 
 import { db } from './firebase';
-import { collection, addDoc, setDoc,doc, getDoc } from "firebase/firestore"; 
+import { collection, addDoc, setDoc,doc, getDoc, getDocs } from "firebase/firestore"; 
   
 //const db = getFirestore();
 
@@ -17,8 +17,9 @@ export async function fetchObject(uid){
         const docRef = await doc(db, "users" ,uid);
         
         const docSnapShot = await getDoc(docRef);
-        console.log('clg docref in fetchobj ',docRef);
-        console.log('clg docsnap: ', docSnapShot.data());
+        console.log('clg docref in fetchobj ',docSnapShot);
+        const data = await docSnapShot.data()
+        //console.log('clg docsnap: ', data);
         return docSnapShot.data();
     }catch(e){
         
@@ -80,9 +81,9 @@ export const createObject = async (email,age,weight,heightFt, heightIn,uid) =>{
 export const createWorkout = async (workoutName,workoutType,workoutDate,workoutTime,workoutDuration,workoutNotes, workoutSets, workoutReps, workoutWeights) => 
 {
     // const userRef = doc(db,"users",uid );
-    const docRef = doc(db, "users", email);
+    //const docRef = doc(db, "users", email);
     // const docRef = db.collection('users').doc(email).collection('workouts').doc(workoutName);
-    const colRef = collection(docRef, "workouts")
+    const colRef = collection(db, "workouts")
     // const docRef = db.collection('users').doc(email).collection('workouts').doc(workoutName);
     try {
         const workoutObj = {
@@ -96,8 +97,9 @@ export const createWorkout = async (workoutName,workoutType,workoutDate,workoutT
             workoutReps: workoutReps,
             workoutWeights: workoutWeights  
         };
-        const workoutref = await setDoc(colRef,workoutObj)
-        // console.log('clg obj', workoutObj);
+        console.log('clg obj', workoutObj);
+        const workoutref = await addDoc(colRef,workoutObj)
+        
         // console.log('clg user ref: ', docRef);
         return workoutObj;
     } catch (error) {
@@ -105,8 +107,58 @@ export const createWorkout = async (workoutName,workoutType,workoutDate,workoutT
     }
 
 }
+
+export async function fetchWorkoutObject(uid){
+    
+    try{
+        
+        const docRef = await doc(db, "workouts", uid);
+        
+        const docSnapShot = await getDoc(docRef);
+        console.log('clg docref in fetchobj ',docRef);
+        const data = await docSnapShot.data()
+        console.log('clg docsnap: ', docSnapShot.id);
+        return {...docSnapShot.data(), "uid": docSnapShot.id};
+    }catch(e){
+        
+        //console.error(e);
+        return e;
+    }
+}
+
+
+export async function editWorkout(workoutSets, workoutReps, workoutWeights)
+
+{
+    const docRef = await doc(db, "users", "Kgby8IbfypPUsTA2gQ148p0l65l2");
+    console.log('clg editwork docref: ', docRef);
+    // const q = query(docRef, where(email, "==", "azaman@gmail.com"));
+    // console.log('clg q: ', q);
+    // const payload = collection(q, "workouts");
+    // const colRef = collection(docRef, "workouts", "==", "EHFr9XL6x4rXgAwbx3zw");
+    const colRef = await doc(docRef, "workouts","EHFr9XL6x4rXgAwbx3zw");
+    console.log('clg colref edit: ', colRef);
+    // const q2 = query(colRef, where("workouts", "==", "EHFr9XL6x4rXgAwbx3zw"));
+
+    // console.log('clg payload where: ', q2);
+    try {
+            
+        const editObj = {
+            workoutReps: workoutReps,
+            workoutSets: workoutSets,
+            workoutWeights: workoutWeights
+        }
+        //const x = await setDoc(colRef,editObj, {merge: true});
+        
+        return editObj
+
+
+    } catch (error) {
+        console.log('Unable to edit a workout due to: ',error);
+    }
+
+}
+
+
+
 //module.exports = {authenticate,createObject};
-
-
-
-
