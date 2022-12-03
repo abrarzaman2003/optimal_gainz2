@@ -15,6 +15,7 @@
     "firebase": "^9.13.0",
     "jest": "^26.6.3",
     "jest-expo": "^47.0.1",
+    "jshint": "^2.13.6",
     "react": "18.1.0",
     "react-native": "0.70.5",
     "react-navigation": "^4.4.4"
