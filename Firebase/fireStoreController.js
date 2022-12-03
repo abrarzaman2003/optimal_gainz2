@@ -28,12 +28,13 @@ export async function fetchObject(uid){
     }
 }
 
-export const createObject = async (email,age,weight,heightFt, heightIn,uid) =>{
+export const createObject = async (username,email,age,weight,heightFt, heightIn,uid) =>{
     const collectionRef = doc(db,"users",uid);
 
     try {
         const object = {
             id : uid,
+            username: username,
             email: email,
             age: age,
             weight: weight,

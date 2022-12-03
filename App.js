@@ -3,7 +3,7 @@ import { Keyboard, StyleSheet, Pressable, View, Text, TextInput, Button, ScrollV
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
-import { loginUser } from './Firebase/functions';
+import { loginUser, makeUser } from './Firebase/functions';
 //npm i -S react-native-swipe-gestures
 
 
@@ -150,6 +150,24 @@ function Login( {navigation} ) {
 }
 
 function Register( {navigation} ) {
+  const [email,setEmail] = useState("");
+  const [userName,setUserName] = useState("");
+  const [retype, setRetype] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onClick = () =>{
+    createUser();
+    navigation.navigate("Login")
+  }
+
+  const createUser = async () =>{
+    console.log(password);
+    const x = await makeUser(userName,email,password,retype,18,150,6,0);
+    console.log(x);
+    return x;
+  }
+
+ 
   return (
     <View 
       style={{
@@ -185,6 +203,7 @@ function Register( {navigation} ) {
           padding: 15,
           borderRadius: 15, 
         }}
+        onChangeText= {newText => setUserName(newText)}
         placeholder="Username"
         />
         {/* Space */}
@@ -199,6 +218,7 @@ function Register( {navigation} ) {
           padding: 15,
           borderRadius: 15,
         }}
+        onChangeText= {newText => setEmail(newText)}
         placeholder="E-Mail Address"
         />
         <View style={{
@@ -212,6 +232,7 @@ function Register( {navigation} ) {
           padding: 15,
           borderRadius: 15,
         }}
+        onChangeText= {newText => setPassword(newText)}
         placeholder="Password"
         />
         <View style={{
@@ -225,6 +246,7 @@ function Register( {navigation} ) {
           padding: 15,
           borderRadius: 15,
         }}
+        onChangeText= {newText => setRetype(newText)}
         placeholder="Re-type Password"
         />
         <View style={{
@@ -233,7 +255,7 @@ function Register( {navigation} ) {
         <Button      //TODO: clicking button should verify input and create user account
         title="Submit" //...currently already takes user to login page
         onPress={() =>
-          navigation.navigate("Login")
+          onClick()
         }
         />
         </View>
