@@ -5,7 +5,7 @@
 
 import { db } from './firebase';
 import { collection, addDoc, setDoc,doc, getDoc, getDocs } from "firebase/firestore"; 
-  
+import auth from './firebaseAuth';
 //const db = getFirestore();
 
 console.log("hi");
@@ -28,13 +28,12 @@ export async function fetchObject(uid){
     }
 }
 
-export const createObject = async (username,email,age,weight,heightFt, heightIn,uid) =>{
+export const createObject = async (email,age,weight,heightFt, heightIn,uid) =>{
     const collectionRef = doc(db,"users",uid);
 
     try {
         const object = {
             id : uid,
-            username: username,
             email: email,
             age: age,
             weight: weight,
@@ -83,9 +82,9 @@ export const createObject = async (username,email,age,weight,heightFt, heightIn,
 export const createWorkout = async (workoutName,workoutType,workoutDate,workoutTime,workoutDuration,workoutNotes, workoutSets, workoutReps, workoutWeights) => 
 {
     // const userRef = doc(db,"users",uid );
-    //const docRef = doc(db, "users", email);
+    const docRef = doc(db, "users", auth.currentUser.uid);
     // const docRef = db.collection('users').doc(email).collection('workouts').doc(workoutName);
-    const colRef = collection(db, "workouts")
+    const colRef = collection(docRef, "workouts")
     // const docRef = db.collection('users').doc(email).collection('workouts').doc(workoutName);
     try {
         const workoutObj = {

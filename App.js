@@ -3,11 +3,11 @@ import { Keyboard, StyleSheet, Pressable, View, Text, TextInput, Button, ScrollV
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
-
 import {getWorkoutInfo, loginUser, makeUser } from './Firebase/functions';
-//import { loginUser } from './Firebase/functions';
 import { createWorkout, editWorkout } from './Firebase/fireStoreController';
-
+import { getAuth } from '@firebase/auth';
+import { makeWorkout } from './Firebase/functions';
+import auth from './Firebase/firebaseAuth';
 
 
 
@@ -477,6 +477,8 @@ function CreateCustomWorkout( {navigation} )
 
   const [workout, setWorkout] = useState({})
   // const [loggedIn, setLoggedIn] = useState(false);
+  // console.log('clg id in cw: ', auth.currentUser?.uid);
+  // console.log('clg email in cw: ', auth.currentUser?.email);
   const createWrk = async () => {
     console.log(initWorkoutName)
     console.log(initWorkoutType)
