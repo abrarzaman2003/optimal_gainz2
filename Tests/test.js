@@ -1,5 +1,8 @@
-import {loginUser,registerUser,personalInformationInput, makeUser, makeWorkout, checkWorkoutMax} from '../Firebase/functions';
+import {loginUser,registerUser,personalInformationInput, makeUser, makeWorkout, checkWorkoutMax,getWorkout, editWorkOut} from '../Firebase/functions';
 import {logIn} from '../Firebase/firebaseAuth'
+import { editWorkout } from '../Firebase/fireStoreController';
+
+
 
 test('1 - registering valid usesr', () => {
     email = "abrarzaman2003@gmail.com";
@@ -161,4 +164,48 @@ test("creating workout for user", async () => {
   expect(data).toBe(true)
 })
 
+test("attempting to get an existing workout", ()=>{
+  const a =  getWorkout("EzQJ4aIV6o4poWrk7IV4");
+  const answer = {
+    "uid": "EzQJ4aIV6o4poWrk7IV4",
+    "workoutDate": {
+      "nanoseconds": 718000000,
+      "seconds": 1669951042,
+    },
+    "workoutDuration": "a",
+    "workoutName": "A",
+    "workoutNotes": "a",
+    "workoutReps": "a",
+    "workoutSets": "a",
+    "workoutTime": "a",
+    "workoutType": "b",
+    "workoutWeights": "a",
+  }
+  //console.log(a);
+  expect(answer);
+})
+
+
+test("attempting to get a workout that does not exist", ()=>{
+  const a =  getWorkout("EzQJ4aIV6o3erWrk7IV4");
+  const answer = {}
+  //console.log(a);
+  expect(answer);
+})
+
+test("editing workout for user", async () => {
+
+  workoutSets = "2" 
+  workoutReps = "21" 
+  workoutWeights = "21 lbs"
+
+  const a = await editWorkout(workoutSets,workoutReps,workoutWeights);
+
+  
+  const answer = {"workoutReps": "21",
+                   "workoutSets": "2",
+                    "workoutWeights": "21 lbs"
+                }
+  expect(a).toEqual(answer);
+})
 

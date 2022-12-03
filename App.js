@@ -3,16 +3,16 @@ import React from 'react';
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
 import { testing } from './Firebase/firebase.js';
 import { logIn, register } from './Firebase/firebaseAuth.js';
-import {createObject} from './Firebase/fireStoreController';
-import { loginUser, makeUser } from './Firebase/functions.js';
+import {createObject, createWorkout} from './Firebase/fireStoreController';
+import { getWorkoutInfo, loginUser, makeUser } from './Firebase/functions.js';
 
 export default function App() {
   const onPressLearnMore = async () =>{
-    const a = await loginUser("bob@gmail.com","P@ssword123");
+    const a = await getWorkoutInfo("EzQJ4aIV6o4poWrk7IV4");
   }
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working!</Text>
+      <Text> Open up App.js to start working! </Text>
       <StatusBar style="auto" />
       <Button
         onPress={onPressLearnMore}
