@@ -3,9 +3,11 @@ import { Keyboard, StyleSheet, Pressable, View, Text, TextInput, Button, ScrollV
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+
+import { getWorkoutInfo, loginUser, makeUser } from './Firebase/functions';
 import { loginUser } from './Firebase/functions';
 import { createWorkout } from './Firebase/fireStoreController';
-//npm i -S react-native-swipe-gestures
+
 
 
 
@@ -151,6 +153,24 @@ function Login( {navigation} ) {
 }
 
 function Register( {navigation} ) {
+  const [email,setEmail] = useState("");
+  const [userName,setUserName] = useState("");
+  const [retype, setRetype] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onClick = () =>{
+    createUser();
+    navigation.navigate("Login")
+  }
+
+  const createUser = async () =>{
+    console.log(password);
+    const x = await makeUser(userName,email,password,retype,18,150,6,0);
+    console.log(x);
+    return x;
+  }
+
+ 
   return (
     <View 
       style={{
@@ -186,6 +206,7 @@ function Register( {navigation} ) {
           padding: 15,
           borderRadius: 15, 
         }}
+        onChangeText= {newText => setUserName(newText)}
         placeholder="Username"
         />
         {/* Space */}
@@ -200,6 +221,7 @@ function Register( {navigation} ) {
           padding: 15,
           borderRadius: 15,
         }}
+        onChangeText= {newText => setEmail(newText)}
         placeholder="E-Mail Address"
         />
         <View style={{
@@ -213,6 +235,7 @@ function Register( {navigation} ) {
           padding: 15,
           borderRadius: 15,
         }}
+        onChangeText= {newText => setPassword(newText)}
         placeholder="Password"
         />
         <View style={{
@@ -226,6 +249,7 @@ function Register( {navigation} ) {
           padding: 15,
           borderRadius: 15,
         }}
+        onChangeText= {newText => setRetype(newText)}
         placeholder="Re-type Password"
         />
         <View style={{
@@ -234,7 +258,7 @@ function Register( {navigation} ) {
         <Button      //TODO: clicking button should verify input and create user account
         title="Submit" //...currently already takes user to login page
         onPress={() =>
-          navigation.navigate("Login")
+          onClick()
         }
         />
         </View>
@@ -263,77 +287,53 @@ function Home( {route, navigation} ) {
           alignItems: "center",
           justifyContent: "center",
         }}>
-          <Greeting time="morning" name="Abrar"/>
+          <Greeting time="morning" name={route.params.username}/>
         </View>
         <View style={{
           flexDirection: "row",
         }}>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "0uLUSzQgA4kMpC54Dd9a"})}>
             <Text style={styles.text}>
-              Item1
+              Dumbells Incline Press
             </Text>
           </Pressable>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "vFFS36h72WL1tIS4F1t6"})}>
             <Text style={styles.text}>
-              Item2
-            </Text>
-          </Pressable>
-        </View>
-        <View style={{
-          flexDirection: "row",
-        }}>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
-            <Text style={styles.text}>
-              Item3
-            </Text>
-          </Pressable>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
-            <Text style={styles.text}>
-              Item4
+              Bench Press
             </Text>
           </Pressable>
         </View>
         <View style={{
           flexDirection: "row",
         }}>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "UBhyPaoEOQOKDoVXgO3r"})}>
             <Text style={styles.text}>
-              Item5
+              Dumbell Bench Press
             </Text>
           </Pressable>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "yydSFEXHLPmCzLSmk1R1"})}>
             <Text style={styles.text}>
-              Item6
-            </Text>
-          </Pressable>
-        </View>
-        <View style={{
-          flexDirection: "row",
-        }}>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
-            <Text style={styles.text}>
-              Item7
-            </Text>
-          </Pressable>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
-            <Text style={styles.text}>
-              Item8
+              Military Press
             </Text>
           </Pressable>
         </View>
         <View style={{
           flexDirection: "row",
         }}>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "w7kDr8dc9iG3vc1l4lYw"})}>
             <Text style={styles.text}>
-              Item9
+              Overhead Press
             </Text>
           </Pressable>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout")}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "Td0HuI9SBqyKH5CBYz0i"})}>
             <Text style={styles.text}>
-              Item10
+              Romainian Deadlift
             </Text>
           </Pressable>
+        </View>
+        <View style={{
+          flexDirection: "row",
+        }}>
         </View>
         <View style={{
           flexDirection: "row",
@@ -360,8 +360,20 @@ function Home( {route, navigation} ) {
   );
 }
 
-function WorkoutInformation( {navigation} )
+function WorkoutInformation( {route, navigation} )
 {
+  const[workoutInfo, setWorkoutInfo] = useState({});
+  //const[loaded, setLoaded] = useState(false);
+
+  useEffect(()=>{
+    retrieveWorkoutInfo();
+  },[setWorkoutInfo]);
+
+  const retrieveWorkoutInfo = async ()=>{
+    const w = await getWorkoutInfo(route.params.id);
+    setWorkoutInfo(w);
+    //setLoaded(true);
+  }
   return(
     <GestureRecognizer style={{
       backgroundColor: "dodgerblue",
@@ -371,7 +383,7 @@ function WorkoutInformation( {navigation} )
       onPress={() => navigation.navigate("Home")}
       >
       <View style={{backgroundColor: "dodgerblue", flex: 0.5, alignItems: "center", justifyContent: "center"}}>
-        <Text style={{fontSize: 48,}}> Workout Title </Text>
+        <Text style={{fontSize: 48,}}> {workoutInfo.workoutName} </Text>
       </View>
       <View style={{
         backgroundColor: "tomato",
@@ -379,13 +391,7 @@ function WorkoutInformation( {navigation} )
         borderRadius: 15,
         width: "90%",}}>
         <Text style={{fontSize: 22, padding: "5%",}} adjustsFontSizeToFit={true}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-        ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id 
-        est laborum.</Text>
+        {workoutInfo.workoutNotes}</Text>
       </View>
       <View style={{backgroundColor: "dodgerblue", flex: 0.3}}></View>
     </GestureRecognizer>
