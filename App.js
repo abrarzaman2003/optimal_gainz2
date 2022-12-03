@@ -292,7 +292,7 @@ function Home( {route, navigation} ) {
               Dumbells Incline Press
             </Text>
           </Pressable>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "0uLUSzQgA4kMpC54Dd9a"})}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "vFFS36h72WL1tIS4F1t6"})}>
             <Text style={styles.text}>
               Bench Press
             </Text>
@@ -301,12 +301,12 @@ function Home( {route, navigation} ) {
         <View style={{
           flexDirection: "row",
         }}>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "0uLUSzQgA4kMpC54Dd9a"})}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "UBhyPaoEOQOKDoVXgO3r"})}>
             <Text style={styles.text}>
               Dumbell Bench Press
             </Text>
           </Pressable>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "0uLUSzQgA4kMpC54Dd9a"})}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "yydSFEXHLPmCzLSmk1R1"})}>
             <Text style={styles.text}>
               Military Press
             </Text>
@@ -315,12 +315,12 @@ function Home( {route, navigation} ) {
         <View style={{
           flexDirection: "row",
         }}>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "0uLUSzQgA4kMpC54Dd9a"})}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "w7kDr8dc9iG3vc1l4lYw"})}>
             <Text style={styles.text}>
               Overhead Press
             </Text>
           </Pressable>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "0uLUSzQgA4kMpC54Dd9a"})}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "Td0HuI9SBqyKH5CBYz0i"})}>
             <Text style={styles.text}>
               Romainian Deadlift
             </Text>
@@ -363,7 +363,7 @@ function WorkoutInformation( {route, navigation} )
   useEffect(()=>{
     retrieveWorkoutInfo();
   },[setWorkoutInfo]);
-  
+
   const retrieveWorkoutInfo = async ()=>{
     const w = await getWorkoutInfo(route.params.id);
     setWorkoutInfo(w);
