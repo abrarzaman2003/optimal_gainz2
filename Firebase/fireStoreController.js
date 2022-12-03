@@ -129,16 +129,16 @@ export async function fetchWorkoutObject(uid){
 }
 
 
-export async function editWorkout(workoutSets, workoutReps, workoutWeights)
+export async function editWorkout(userId, workoutId, workoutSets, workoutReps, workoutWeights)
 
 {
-    const docRef = await doc(db, "users", "Kgby8IbfypPUsTA2gQ148p0l65l2");
+    const docRef = await doc(db, "users", userId );
     console.log('clg editwork docref: ', docRef);
     // const q = query(docRef, where(email, "==", "azaman@gmail.com"));
     // console.log('clg q: ', q);
     // const payload = collection(q, "workouts");
     // const colRef = collection(docRef, "workouts", "==", "EHFr9XL6x4rXgAwbx3zw");
-    const colRef = await doc(docRef, "workouts","EHFr9XL6x4rXgAwbx3zw");
+    const colRef = await doc(docRef, "workouts",workoutId);
     console.log('clg colref edit: ', colRef);
     // const q2 = query(colRef, where("workouts", "==", "EHFr9XL6x4rXgAwbx3zw"));
 
@@ -150,7 +150,7 @@ export async function editWorkout(workoutSets, workoutReps, workoutWeights)
             workoutSets: workoutSets,
             workoutWeights: workoutWeights
         }
-        //const x = await setDoc(colRef,editObj, {merge: true});
+        const x = await setDoc(colRef,editObj, {merge: true});
         
         return editObj
 

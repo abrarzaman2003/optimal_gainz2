@@ -4,9 +4,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
-import { getWorkoutInfo, loginUser, makeUser } from './Firebase/functions';
-import { loginUser } from './Firebase/functions';
-import { createWorkout } from './Firebase/fireStoreController';
+import {getWorkoutInfo, loginUser, makeUser } from './Firebase/functions';
+//import { loginUser } from './Firebase/functions';
+import { createWorkout, editWorkout } from './Firebase/fireStoreController';
 
 
 
@@ -306,7 +306,7 @@ function Home( {route, navigation} ) {
         <View style={{
           flexDirection: "row",
         }}>
-          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "UBhyPaoEOQOKDoVXgO3r"})}>
+          <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "UBhyPaoEOQOKDoVXgO3r", userId:route.params.id})}>
             <Text style={styles.text}>
               Dumbell Bench Press
             </Text>
@@ -374,6 +374,11 @@ function WorkoutInformation( {route, navigation} )
     setWorkoutInfo(w);
     //setLoaded(true);
   }
+
+  const testReps = async () =>{
+    console.log("hi");
+    const a = await editWorkout(route.params.userId,route.params.id,1,1,10);
+  }
   return(
     <GestureRecognizer style={{
       backgroundColor: "dodgerblue",
@@ -393,6 +398,18 @@ function WorkoutInformation( {route, navigation} )
         <Text style={{fontSize: 22, padding: "5%",}} adjustsFontSizeToFit={true}>
         {workoutInfo.workoutNotes}</Text>
       </View>
+      <Pressable onPress={testReps}
+          style={{
+          backgroundColor: "gold",
+          justifyContent: "center",
+          alignItems: "center",
+          flex: 1,
+          borderRadius: 10,
+          }}>
+            <View>
+              <Text style={{fontSize: 48,}}>test reps</Text>
+            </View>
+      </Pressable>
       <View style={{backgroundColor: "dodgerblue", flex: 0.3}}></View>
     </GestureRecognizer>
   );
