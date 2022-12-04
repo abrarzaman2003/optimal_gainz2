@@ -334,16 +334,16 @@ function Home( {route, navigation} ) {
       <ScrollView style={styles.grid} contentContainerStyle={{justifyContent: "center"}}>
         {/* Here is scrollable body */}
         <View style={{
-          flexDirection: "row",
           flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
+          textAlign: "center",
+          marginVertical: "5%",
+          marginHorizontal: "15%",
+          borderRadius: 10,
+          backgroundColor: "white",
         }}>
-          <Greeting time="morning" name={route.params.username}/>
+          <Greeting time="morning" name={route.params.userName}/>
         </View>
-        <View style={{
-          flexDirection: "row",
-        }}>
+        <View style={styles.row}>
           <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "0uLUSzQgA4kMpC54Dd9a", userId:route.params.id})}>
             <Text style={styles.text}>
               Dumbells Incline Press
@@ -355,9 +355,7 @@ function Home( {route, navigation} ) {
             </Text>
           </Pressable>
         </View>
-        <View style={{
-          flexDirection: "row",
-        }}>
+        <View style={styles.row}>
           <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "UBhyPaoEOQOKDoVXgO3r", userId:route.params.id})}>
             <Text style={styles.text}>
               Dumbell Bench Press
@@ -369,9 +367,7 @@ function Home( {route, navigation} ) {
             </Text>
           </Pressable>
         </View>
-        <View style={{
-          flexDirection: "row",
-        }}>
+        <View style={styles.row}>
           <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "w7kDr8dc9iG3vc1l4lYw", userId:route.params.id})}>
             <Text style={styles.text}>
               Overhead Press
@@ -383,24 +379,20 @@ function Home( {route, navigation} ) {
             </Text>
           </Pressable>
         </View>
-        <View style={{
-          flexDirection: "row",
-        }}>
+        <View style={styles.row}>
         </View>
         <View style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          margin: "2.5%",
           marginHorizontal: "10%",
+          marginVertical: "20%",
+          justifyContent: "center",
+          alignItems: "center",
         }}>
           <Pressable onPress={() => navigation.navigate("Create Custom Workout")}
           style={{
           backgroundColor: "gold",
-          justifyContent: "center",
-          alignItems: "center",
-          flex: 1,
+          textAlign: "center",
           borderRadius: 10,
+          width: "80%",
           }}>
             <View>
               <Text style={{fontSize: 48,}}>Add workout</Text>
@@ -784,14 +776,14 @@ function App() {
 
 const styles = StyleSheet.create({
   home: {
-      backgroundColor: "purple",
+      backgroundColor: "#c02d0c",
       flex: 2,
       alignItems: "center",
   },
 
   text: {
       fontFamily: "Futura",
-      fontSize: 30,
+      fontSize: 68,
       alignItems: "center",
       justifyContent: "center",
   },
@@ -800,15 +792,21 @@ const styles = StyleSheet.create({
     flex: 2,
     width: "90%",
     backgroundColor: "#575757",
+    borderRadius: 10,
+    marginVertical: "5%",
+    paddingHorizontal: "5%",
   },
 
   griditem: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    textAlign: "center",
     backgroundColor: "white",
-    borderColor: "salmon",
+    borderColor: "#c02d0c",
     borderWidth: 5,
+  },
+
+  row: {
+    flexDirection: "row",
   }
 });
 
