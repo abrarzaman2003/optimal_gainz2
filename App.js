@@ -16,12 +16,25 @@ function Landing( {navigation} )
   return (
     <View 
       style={{
-        backgroundColor: "purple",
+        backgroundColor: "#575757",
         flex: 1,
     }}>
+      <View style={{
+        marginTop: "50%",
+        marginHorizontal: "18%",
+        backgroundColor: "#c02d0c",
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 15,
+      }}>
+        <Text style={{fontSize: 40}}>
+          Optimal Gainz
+        </Text>
+      </View>
       <View 
       style={{
-        backgroundColor: "dodgerblue",
+        backgroundColor: "#575757",
         flex: 7,
       }} />
       <Pressable onPress={() => navigation.navigate("Login")}
@@ -38,7 +51,7 @@ function Landing( {navigation} )
         </Pressable>
       <Pressable onPress={() => navigation.navigate("Register")}
       style={{
-        backgroundColor: "tomato",
+        backgroundColor: "#cd070c",
         justifyContent: "center",
         alignItems: "center",
         flex: 0.7,
@@ -50,7 +63,7 @@ function Landing( {navigation} )
         </Pressable>
       <View 
       style={{
-        backgroundColor: "dodgerblue",
+        backgroundColor: "#575757",
         flex: 1.5,
       }} />
     </View>
@@ -87,7 +100,7 @@ function Login( {navigation} ) {
         flex: 1,
     }}>
       <View style={{
-        backgroundColor: "dodgerblue",
+        backgroundColor: "#575757",
         flex: 1,
       }}/>
       <View style={{
@@ -145,7 +158,7 @@ function Login( {navigation} ) {
         />
         </View>
       <View style={{
-        backgroundColor: "dodgerblue",
+        backgroundColor: "#575757",
         flex: 1,
       }}/>
     </View>
