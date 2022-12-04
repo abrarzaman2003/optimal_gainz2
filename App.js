@@ -445,7 +445,7 @@ function WorkoutInformation( {route, navigation} )
         borderRadius: 15,
         width: "90%",}}>
         <Text style={{fontSize: 22, padding: "5%",}}>
-        sample</Text>
+        {workoutInfo.workoutNotes}</Text>
       </View>
       <View style={{
         flexDirection: "row", 
