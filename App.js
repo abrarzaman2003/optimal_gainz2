@@ -98,23 +98,27 @@ function Login( {navigation} ) {
     <View 
       style={{
         flex: 1,
+        backgroundColor: "#575757",
     }}>
       <View style={{
         backgroundColor: "#575757",
         flex: 1,
       }}/>
       <View style={{
-        backgroundColor: "tomato",
+        backgroundColor: "#c02d0c",
+        marginHorizontal: "8%",
+        borderRadius: 10,
         flex: 1,
         alignContent: "center",
         justifyContent: "center",
         padding: 100,
       }}>
-        <View>
+        <View style={{marginVertical: "10%",}}>
           <Text style={{
             fontFamily: "Arial",
             fontSize: 48,
             textAlign: "center",
+            borderRadius: 10,
           }}>Login</Text>
         </View>
         {/* Space */}
@@ -129,7 +133,7 @@ function Login( {navigation} ) {
           padding: 15,
           borderRadius: 15, 
         }}
-        placeholder="Full Name"
+        placeholder="Email"
         onChangeText= {newText => setEmail(newText)}
         />
         {/* Space */}
@@ -146,11 +150,12 @@ function Login( {navigation} ) {
         }}
         onChangeText= {newText => setPassword(newText)}
         placeholder="Password"
+        secureTextEntry={true}
         />
         <View style={{
           padding: 5,
         }}/>
-        <Button //TODO: clicking login should verify user input and allow login
+        <Button //TODO: if login fails, message should pop up
         title="Login"
         onPress={() =>
           logOn()
@@ -183,19 +188,21 @@ function Register( {navigation} ) {
     return x;
   }
 
- 
   return (
     <View 
       style={{
         flex: 1,
+        backgroundColor: "#575757",
     }}>
       <View style={{
-        backgroundColor: "dodgerblue",
+        backgroundColor: "#575757",
         flex: 1,
       }}/>
       <View style={{
         backgroundColor: "tomato",
-        flex: 1,
+        flex: 2,
+        marginHorizontal: "5%",
+        borderRadius: 10,
         alignContent: "center",
         justifyContent: "center",
         padding: 100,
@@ -203,13 +210,43 @@ function Register( {navigation} ) {
         <View>
           <Text style={{
             fontFamily: "Arial",
-            fontSize: 48,
+            fontSize: 40,
             textAlign: "center",
           }}>Register</Text>
         </View>
         {/* Space */}
         <View style={{
           padding: 20,
+        }}/>
+        <TextInput style={{
+          height: 40,
+          borderColor: 'gray',
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 15,
+        }}
+        onChangeText= {newText => setEmail(newText)}
+        placeholder="First Name"
+        />
+        {/* Space */}
+        <View style={{
+          padding: 5,
+        }}/>
+        <TextInput style={{
+          height: 40,
+          borderColor: "gray",
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 15, 
+        }}
+        onChangeText= {newText => setUserName(newText)}
+        placeholder="Last Name"
+        />
+        {/* Space */}
+        <View style={{
+          padding: 5,
         }}/>
         <TextInput style={{
           height: 40,
@@ -276,7 +313,7 @@ function Register( {navigation} ) {
         />
         </View>
       <View style={{
-        backgroundColor: "dodgerblue",
+        backgroundColor: "#575757",
         flex: 1,
       }}/>
     </View>
