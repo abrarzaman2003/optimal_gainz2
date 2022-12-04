@@ -327,33 +327,90 @@ function Home( {navigation} ) {
   );
 }
 
-function WorkoutInformation( {navigation} )
+function WorkoutInformation( {route, navigation} )
 {
   return(
     <GestureRecognizer style={{
-      backgroundColor: "dodgerblue",
+      backgroundColor: "#575757",
       flex: 1,
-      alignItems: "center"}}
+      alignItems: "center",
+      }}
       onSwipeLeft={() => navigation.navigate("Home")}
       onPress={() => navigation.navigate("Home")}
-      >
-      <View style={{backgroundColor: "dodgerblue", flex: 0.5, alignItems: "center", justifyContent: "center"}}>
-        <Text style={{fontSize: 48,}}> Workout Title </Text>
+    >
+      <View style={{backgroundColor: "#575757", flex: 0.5, alignItems: "center", justifyContent: "center"}}>
+        <Text style={{fontSize: 48, marginTop: "45%",}}> placehold </Text>
       </View>
       <View style={{
-        backgroundColor: "tomato",
-        flex: 1.5,
+        backgroundColor: "#c02d0c",
+        flex: 0.5,
         borderRadius: 15,
         width: "90%",}}>
-        <Text style={{fontSize: 22, padding: "5%",}} adjustsFontSizeToFit={true}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-        ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id 
-        est laborum.</Text>
+        <Text style={{fontSize: 22, padding: "5%",}}>
+        sample</Text>
       </View>
+      <View style={{
+        flexDirection: "row", 
+        marginTop: "5%",
+        marginHorizontal: "5%",
+        alignItems: "center",
+        }}>
+        <TextInput style={{
+            height: 40,
+            width: 80,
+            borderwidth: 1,
+            backgroundColor: "#fff",
+            padding: 15,
+            borderRadius: 10,
+          }}
+          onChangeText= {newText => setRepCount(newText)}
+          placeholder="Reps"
+        />
+        <View style={{
+          padding: 5,
+        }}/>
+        <TextInput style={{
+          height: 40,
+          width: 80,
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 10,
+        }}
+        onChangeText= {newText => setSetCount(newText)}
+        placeholder="Sets"
+        />
+        <View style={{
+          padding: 5,
+        }}/>
+        <TextInput style={{
+          height: 40,
+          width: 80,
+          borderwidth: 1,
+          backgroundColor: "#fff",
+          padding: 15,
+          borderRadius: 10,
+        }}
+        onChangeText= {newText => setWeight(newText)}
+        placeholder="Weight"
+        />
+        <View style={{
+          padding: 5,
+        }}/>
+        <Pressable onPress={console.log("success")}
+            style={{
+            backgroundColor: "gold",
+            alignItems: "center",
+            textAlign: "center",
+            flex: 1,
+            borderRadius: 10,
+            }}>
+              <View>
+                <Text style={{fontSize: 32,}}>test reps</Text>
+              </View>
+        </Pressable>
+      </View>
+      
       <View style={{backgroundColor: "dodgerblue", flex: 0.3}}></View>
     </GestureRecognizer>
   );
@@ -500,12 +557,12 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator>
         {/* <Stack.Screen name="Center" component={Center} /> */}
-        <Stack.Screen name="Welcome" component={Landing} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="Home" component={Home} />
+        {/* <Stack.Screen name="Welcome" component={Landing} /> */}
+        {/* <Stack.Screen name="Login" component={Login} /> */}
+        {/* <Stack.Screen name="Register" component={Register} /> */}
+        {/* <Stack.Screen name="Home" component={Home} /> */}
         <Stack.Screen name="Workout" component={WorkoutInformation} />
-        <Stack.Screen name="Create Custom Workout" component={CreateCustomWorkout} />
+        {/* <Stack.Screen name="Create Custom Workout" component={CreateCustomWorkout} /> */}
       </Stack.Navigator>
       {/*<Text style={{
         fontSize: 36,
