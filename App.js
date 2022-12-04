@@ -440,34 +440,40 @@ function WorkoutInformation( {route, navigation} )
         <Text style={{fontSize: 48,}}> {workoutInfo.workoutName} </Text>
       </View>
       <View style={{
-        backgroundColor: "tomato",
-        flex: 1.5,
+        backgroundColor: "#c02d0c",
+        flex: 0.5,
         borderRadius: 15,
         width: "90%",}}>
-        <Text style={{fontSize: 22, padding: "5%",}} adjustsFontSizeToFit={true}>
-        {workoutInfo.workoutNotes}</Text>
+        <Text style={{fontSize: 22, padding: "5%",}}>
+        sample</Text>
       </View>
-      <TextInput style={{
-          height: 40,
-          borderColor: 'gray',
-          borderwidth: 1,
-          backgroundColor: "#fff",
-          padding: 15,
-          borderRadius: 15,
-        }}
-        onChangeText= {newText => setRepCount(newText)}
-        placeholder="Reps"
+      <View style={{
+        flexDirection: "row", 
+        marginTop: "5%",
+        marginHorizontal: "5%",
+        alignItems: "center",
+        }}>
+        <TextInput style={{
+            height: 40,
+            width: 80,
+            borderwidth: 1,
+            backgroundColor: "#fff",
+            padding: 15,
+            borderRadius: 10,
+          }}
+          onChangeText= {newText => setRepCount(newText)}
+          placeholder="Reps"
         />
         <View style={{
           padding: 5,
         }}/>
         <TextInput style={{
           height: 40,
-          borderColor: 'gray',
+          width: 80,
           borderwidth: 1,
           backgroundColor: "#fff",
           padding: 15,
-          borderRadius: 15,
+          borderRadius: 10,
         }}
         onChangeText= {newText => setSetCount(newText)}
         placeholder="Sets"
@@ -477,11 +483,11 @@ function WorkoutInformation( {route, navigation} )
         }}/>
         <TextInput style={{
           height: 40,
-          borderColor: 'gray',
+          width: 80,
           borderwidth: 1,
           backgroundColor: "#fff",
           padding: 15,
-          borderRadius: 15,
+          borderRadius: 10,
         }}
         onChangeText= {newText => setWeight(newText)}
         placeholder="Weight"
@@ -489,18 +495,19 @@ function WorkoutInformation( {route, navigation} )
         <View style={{
           padding: 5,
         }}/>
-      <Pressable onPress={testReps}
-          style={{
-          backgroundColor: "gold",
-          justifyContent: "center",
-          alignItems: "center",
-          flex: 1,
-          borderRadius: 10,
-          }}>
-            <View>
-              <Text style={{fontSize: 48,}}>test reps</Text>
-            </View>
-      </Pressable>
+        <Pressable onPress={testReps}
+            style={{
+            backgroundColor: "gold",
+            alignItems: "center",
+            textAlign: "center",
+            flex: 1,
+            borderRadius: 10,
+            }}>
+              <View>
+                <Text style={{fontSize: 32,}}>test reps</Text>
+              </View>
+        </Pressable>
+      </View>
       <View style={{backgroundColor: "dodgerblue", flex: 0.3}}></View>
     </GestureRecognizer>
   );
