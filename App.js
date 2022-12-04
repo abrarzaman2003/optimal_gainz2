@@ -199,7 +199,7 @@ function Register( {navigation} ) {
         flex: 1,
       }}/>
       <View style={{
-        backgroundColor: "tomato",
+        backgroundColor: "#c02d0c",
         flex: 2,
         marginHorizontal: "5%",
         borderRadius: 10,
@@ -272,7 +272,7 @@ function Register( {navigation} ) {
           borderRadius: 15,
         }}
         onChangeText= {newText => setEmail(newText)}
-        placeholder="E-Mail Address"
+        placeholder="Email Address"
         />
         <View style={{
           padding: 5,
@@ -287,6 +287,7 @@ function Register( {navigation} ) {
         }}
         onChangeText= {newText => setPassword(newText)}
         placeholder="Password"
+        secureTextEntry={true}
         />
         <View style={{
           padding: 5,
@@ -301,6 +302,7 @@ function Register( {navigation} ) {
         }}
         onChangeText= {newText => setRetype(newText)}
         placeholder="Re-type Password"
+        secureTextEntry={true}
         />
         <View style={{
           padding: 5,
@@ -436,13 +438,13 @@ function WorkoutInformation( {route, navigation} )
   }
   return(
     <GestureRecognizer style={{
-      backgroundColor: "dodgerblue",
+      backgroundColor: "#575757",
       flex: 1,
       alignItems: "center"}}
       onSwipeLeft={() => navigation.navigate("Home")}
       onPress={() => navigation.navigate("Home")}
       >
-      <View style={{backgroundColor: "dodgerblue", flex: 0.5, alignItems: "center", justifyContent: "center"}}>
+      <View style={{backgroundColor: "#575757", flex: 0.5, alignItems: "center", justifyContent: "center"}}>
         <Text style={{fontSize: 48,}}> {workoutInfo.workoutName} </Text>
       </View>
       <View style={{
@@ -556,7 +558,7 @@ function CreateCustomWorkout( {navigation} )
     //      you need to be able to tap somewhere to dismiss the keyboard
 
     <View style={{
-      backgroundColor: "dodgerblue",
+      backgroundColor: "#575757",
       flex: 1,
       display: "flex",
       alignItems: "center",
@@ -565,12 +567,13 @@ function CreateCustomWorkout( {navigation} )
       }}>
         <View style={{
           backgroundColor: "gold",
-          flex: 0.3,
+          flex: 0.8,
           paddingHorizontal: "2.5%",
-          width: "50%",
-          borderRadius: 20,
+          paddingVertical: "1%",
+          width: "70%",
+          borderRadius: 15,
         }}>
-          <View style={{marginTop: "15%",}}/>
+          <View style={{marginTop: "10%",}}/>
           <TextInput style={{
           borderwidth: 1,
           backgroundColor: "#fff",
@@ -582,18 +585,17 @@ function CreateCustomWorkout( {navigation} )
           />
           <View style={{padding: 5,}}/>
           <TextInput style={{
-            height: "40%",
             borderwidth: 1,
             backgroundColor: "#fff",
             padding: 15,
             borderRadius: 5,
           }}
           //this one word allows you to type more than one line
-          multiline
           placeholder="Workout Type(Chest, Back, Legs, etc.)"
           onChangeText={newText => setWorkoutType(newText)}
           />
-                    <TextInput style={{
+          <View style={{padding: 5,}}/>
+          <TextInput style={{
           borderwidth: 1,
           backgroundColor: "#fff",
           padding: 15,
@@ -602,7 +604,8 @@ function CreateCustomWorkout( {navigation} )
           placeholder="Workout Date"
           onChangeText={newText => setWorkoutDate(newText)}
           />
-                    <TextInput style={{
+          <View style={{padding: 5,}}/>
+          <TextInput style={{
           borderwidth: 1,
           backgroundColor: "#fff",
           padding: 15,
@@ -611,7 +614,8 @@ function CreateCustomWorkout( {navigation} )
           placeholder="Workout Time"
           onChangeText={newText => setWorkoutTime(newText)}
           />
-                    <TextInput style={{
+          <View style={{padding: 5,}}/>
+          <TextInput style={{
           borderwidth: 1,
           backgroundColor: "#fff",
           padding: 15,
@@ -620,16 +624,20 @@ function CreateCustomWorkout( {navigation} )
           placeholder="Duration"
           onChangeText={newText => setWorkoutDuration(newText)}
           />
-                              <TextInput style={{
+          <View style={{padding: 5,}}/>
+          <TextInput style={{
           borderwidth: 1,
           backgroundColor: "#fff",
           padding: 15,
-          borderRadius: 5, 
+          borderRadius: 5,
+          flex: 1.1,
           }}
           placeholder="Description of workout"
+          multiline
           onChangeText={newText => setWorkoutNotes(newText)}
           />
-                    <TextInput style={{
+          <View style={{padding: 5,}}/>
+          <TextInput style={{
           borderwidth: 1,
           backgroundColor: "#fff",
           padding: 15,
@@ -638,7 +646,8 @@ function CreateCustomWorkout( {navigation} )
           placeholder="Sets"
           onChangeText={newText => setWorkoutSets(newText)}
           />
-                              <TextInput style={{
+          <View style={{padding: 5,}}/>
+          <TextInput style={{
           borderwidth: 1,
           backgroundColor: "#fff",
           padding: 15,
@@ -647,7 +656,8 @@ function CreateCustomWorkout( {navigation} )
           placeholder="Reps"
           onChangeText={newText => setWorkoutReps(newText)}
           />
-                    <TextInput style={{
+          <View style={{padding: 5,}}/>
+          <TextInput style={{
           borderwidth: 1,
           backgroundColor: "#fff",
           padding: 15,
@@ -656,7 +666,6 @@ function CreateCustomWorkout( {navigation} )
           placeholder="Weights (lbs)"
           onChangeText={newText => setWorkoutWeights(newText)}
           />
-
 
           <Pressable onPress={() => createWrk()}
             style={{
@@ -667,7 +676,6 @@ function CreateCustomWorkout( {navigation} )
               justifyContent: "center",
               alignItems: "center",
               backgroundColor: "silver",
-              
             }}>
             <Text style={{fontSize: 20,}}>Submit</Text>
           </Pressable>
@@ -738,7 +746,7 @@ function Center( {navigation} )
 const Greeting = (props) => {
   return (
     <View>
-      <Text style={{fontSize: 48,}}>Good {props.time}, {props.name}!</Text>
+      <Text style={{fontSize: 48,}}>Good {props.time}{props.name}!</Text>
     </View>
   );
 }
@@ -783,7 +791,7 @@ const styles = StyleSheet.create({
 
   text: {
       fontFamily: "Futura",
-      fontSize: 68,
+      fontSize: 30,
       alignItems: "center",
       justifyContent: "center",
   },
@@ -791,7 +799,7 @@ const styles = StyleSheet.create({
   grid: {
     flex: 2,
     width: "90%",
-    backgroundColor: "gray",
+    backgroundColor: "#575757",
   },
 
   griditem: {
