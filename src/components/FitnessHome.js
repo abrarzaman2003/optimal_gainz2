@@ -22,7 +22,9 @@ function FitnessHome({route}) {
             <Text style={{fontSize: 24, color: '#0D0D0D', fontWeight:'bold'}}>Workouts</Text>
             <Card cardColor={'#F7F3E3'} cardImage={strong} cardText={'Build Muscle'}/>
             <Card cardColor={'#D7F2F4'} cardImage={situp} cardText={'Get Strong'}/>
-            <Card cardColor={'#FFDFDF'} cardImage={lift} cardText={'Fat Loss'}/>
+            <Pressable onPress={() => navigation.navigate("WorkoutsView")}>
+                <Card cardColor={'#FFDFDF'} cardImage={lift} cardText={'View Workouts'}/>
+            </Pressable>
         </View>
     )
 }

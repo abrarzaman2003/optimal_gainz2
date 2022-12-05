@@ -29,3 +29,5 @@ export async function register(email,password){
     }
     
 }
+
+export default auth;
