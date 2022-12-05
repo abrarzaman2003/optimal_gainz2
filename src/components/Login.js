@@ -27,6 +27,12 @@ const Login = () => {
     console.log('setLoggedIn: ', loggedIn)
 
   }
+
+  function noAccount()
+  {
+    navigation.navigate("Register");
+  }
+
   useEffect(()=>{
     if (loggedIn == true){
       navigation.navigate('FitnessHome', {...user})
@@ -54,7 +60,7 @@ const Login = () => {
                   
                   <Btn brdRadius={40}  brdWidth={'1'} brdColor={'#53595D'} btnWidth={150} txtSize={14} textColor='#0D0D0D' btnLabel="Login" />
                 </Pressable>
-                <Text style={{textAlign: 'center', color: '#B0B6BB', fontSize: '14'}}>Don't have an account?</Text>
+                <Text onPress={() => noAccount()} style={{textAlign: 'center', color: '#B0B6BB', fontSize: '14'}}>Don't have an account?</Text>
                 {/* <TouchableOpacity>
                     <Text style={{fontSize:14, fontWeight:'bold', color: '#0D0D0D'}}>SignIn</Text>
                 </TouchableOpacity> */}

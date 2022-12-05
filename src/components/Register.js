@@ -16,7 +16,7 @@ const Register = () => {
   
     function handleRegister() {
         createUser();
-        navigation.navigate("Login")
+        navigation.navigate("Login");
     }
 
     async function createUser() {
@@ -45,7 +45,7 @@ const Register = () => {
                 <Pressable onPress={() => handleRegister()}>
                   <Btn brdRadius={40}  brdWidth={'1'} brdColor={'#53595D'} btnWidth={150} txtSize={14} textColor='#0D0D0D' btnLabel="Register" />
                 </Pressable>
-                <Text style={{textAlign: 'center', color: '#B0B6BB', fontSize: '14'}}>Already have an account?</Text>
+                <Text onPress={() => handleRegister()} style={{textAlign: 'center', color: '#B0B6BB', fontSize: '14'}}>Already have an account?</Text>
                 {/* <TouchableOpacity>
                     <Text style={{fontSize:14, fontWeight:'bold', color: '#0D0D0D'}}>SignIn</Text>
                 </TouchableOpacity> */}

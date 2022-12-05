@@ -13,7 +13,6 @@ import CreateCustomWorkout from './src/components/AddWorkout';
 const Stack = createNativeStackNavigator();
 
 function App() {
-
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{headerShown: false}}>
