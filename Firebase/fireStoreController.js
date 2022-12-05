@@ -5,7 +5,7 @@
 
 import { db } from './firebase';
 import { collection, addDoc, setDoc,doc, getDoc, getDocs } from "firebase/firestore"; 
-  
+import auth from './firebaseAuth';
 //const db = getFirestore();
 
 console.log("hi");
@@ -33,6 +33,7 @@ export const createObject = async (email,age,weight,heightFt, heightIn,uid) =>{
 
     try {
         const object = {
+            id : uid,
             email: email,
             age: age,
             weight: weight,
@@ -81,9 +82,9 @@ export const createObject = async (email,age,weight,heightFt, heightIn,uid) =>{
 export const createWorkout = async (workoutName,workoutType,workoutDate,workoutTime,workoutDuration,workoutNotes, workoutSets, workoutReps, workoutWeights) => 
 {
     // const userRef = doc(db,"users",uid );
-    //const docRef = doc(db, "users", email);
+    const docRef = doc(db, "users", auth.currentUser.uid);
     // const docRef = db.collection('users').doc(email).collection('workouts').doc(workoutName);
-    const colRef = collection(db, "workouts")
+    const colRef = collection(docRef, "workouts")
     // const docRef = db.collection('users').doc(email).collection('workouts').doc(workoutName);
     try {
         const workoutObj = {
@@ -127,28 +128,28 @@ export async function fetchWorkoutObject(uid){
 }
 
 
-export async function editWorkout(workoutSets, workoutReps, workoutWeights)
+export async function editWorkout(userId, workoutId, workoutSets, workoutReps, workoutWeights)
 
 {
-    const docRef = await doc(db, "users", "Kgby8IbfypPUsTA2gQ148p0l65l2");
-    console.log('clg editwork docref: ', docRef);
-    // const q = query(docRef, where(email, "==", "azaman@gmail.com"));
-    // console.log('clg q: ', q);
-    // const payload = collection(q, "workouts");
-    // const colRef = collection(docRef, "workouts", "==", "EHFr9XL6x4rXgAwbx3zw");
-    const colRef = await doc(docRef, "workouts","EHFr9XL6x4rXgAwbx3zw");
-    console.log('clg colref edit: ', colRef);
+    
     // const q2 = query(colRef, where("workouts", "==", "EHFr9XL6x4rXgAwbx3zw"));
 
     // console.log('clg payload where: ', q2);
     try {
-            
+        const docRef = await doc(db, "users", userId);
+        console.log('clg editwork docref: ', docRef);
+        // const q = query(docRef, where(email, "==", "azaman@gmail.com"));
+        // console.log('clg q: ', q);
+        // const payload = collection(q, "workouts");
+        // const colRef = collection(docRef, "workouts", "==", "EHFr9XL6x4rXgAwbx3zw");
+        const colRef = await doc(docRef, "workouts",workoutId);
+        console.log('clg colref edit: ', colRef);
         const editObj = {
             workoutReps: workoutReps,
             workoutSets: workoutSets,
             workoutWeights: workoutWeights
         }
-        //const x = await setDoc(colRef,editObj, {merge: true});
+        const x = await setDoc(colRef,editObj, {merge: true});
         
         return editObj
 

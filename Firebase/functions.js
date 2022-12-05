@@ -39,6 +39,7 @@ export async function loginUser(email, password){
     
     
 }
+
 export function personalInformationInput(age,bodyweight,heightFt, heightIn){
     if (age < 0 ){
         return "invalid age";
@@ -60,13 +61,20 @@ export function personalInformationInput(age,bodyweight,heightFt, heightIn){
 
 }
 
-export async function makeUser(email, password, retypedPassword, age,bodyweight,heightFt, heightIn){
+export async function makeUser(username,email, password, retypedPassword, age,bodyweight,heightFt, heightIn){
     try{
-        registerUser(email, password, retypedPassword);
-        personalInformationInput(age, bodyweight,heightFt,heightIn);
+
+        if (!registerUser(email, password, retypedPassword) === "Account Generated"){
+            return false;
+        }
+
+        if (!personalInformationInput(age, bodyweight,heightFt,heightIn) === "Personal Info Inputted"){
+            return false;
+        }
+
         const b = await register(email,password);
-        //console.log(b.uid);
-        const a = await createObject(email, age ,bodyweight,heightFt, heightIn,b.uid);
+        console.log(password);
+        const a = await createObject(username,email, age ,bodyweight,heightFt, heightIn,b.uid);
         //const b = await 
         return true;
     }catch(e){
@@ -146,7 +154,3 @@ export function editWorkOut(workoutSets, workoutReps, workoutWeights){
     
     return editObj
 }
-
-
-
- 
