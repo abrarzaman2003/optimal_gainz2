@@ -23,7 +23,7 @@ const Login = () => {
       setLoggedIn(true);
     }
     
-    console.log('clg setUser: ', user)
+    console.log('clg setUser data: ', user)
     console.log('setLoggedIn: ', loggedIn)
 
   }

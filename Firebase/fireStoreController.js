@@ -136,7 +136,7 @@ export async function editWorkout(userId, workoutId, workoutSets, workoutReps, w
 
     // console.log('clg payload where: ', q2);
     try {
-        const docRef = await doc(db, "users", userId);
+        const docRef = await doc(db, "users", auth.currentUser.uid);
         console.log('clg editwork docref: ', docRef);
         // const q = query(docRef, where(email, "==", "azaman@gmail.com"));
         // console.log('clg q: ', q);

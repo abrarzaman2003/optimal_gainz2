@@ -4,8 +4,9 @@ import { Keyboard, StyleSheet, Pressable, View, Text, TextInput, Button, ScrollV
 
 import auth from '../../Firebase/firebaseAuth';
 const WorkoutsView = ({route}) => {
-    console.log('clg route inside workouts view: ', route)
-    console.log('clg route inside workouts viewzzz: ', route.params)
+  // console.log('clg user in wv: ', user)
+    // console.log('clg route inside workouts view: ', route)
+    // console.log('clg route inside workouts viewzzz: ', route.params)
     const navigation = useNavigation();
 
     return (

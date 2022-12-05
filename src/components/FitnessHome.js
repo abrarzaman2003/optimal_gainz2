@@ -8,8 +8,8 @@ import situp from '../../assets/situp.png';
 import lift from '../../assets/lift.png';
 import Card from "./Card";
 import SearchBar from "./SearchBar";
-function FitnessHome({route}) {
-    const navigation = useNavigation();
+function FitnessHome({route, navigation}) {
+    // const navigation = useNavigation();
     console.log("route params: ", route.params)
   console.log('clg route inside fitnes honme: ', route)
     return (
@@ -22,9 +22,10 @@ function FitnessHome({route}) {
             <Text style={{fontSize: 24, color: '#0D0D0D', fontWeight:'bold'}}>Workouts</Text>
             <Card cardColor={'#F7F3E3'} cardImage={strong} cardText={'Build Muscle'}/>
             <Card cardColor={'#D7F2F4'} cardImage={situp} cardText={'Get Strong'}/>
-            <Pressable onPress={() => navigation.navigate("WorkoutsView")}>
+            <Pressable onPress={() => navigation.navigate("WorkoutsView", {})}>
                 <Card cardColor={'#FFDFDF'} cardImage={lift} cardText={'View Workouts'}/>
             </Pressable>
+      
         </View>
     )
 }
