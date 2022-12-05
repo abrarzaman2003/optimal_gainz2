@@ -25,7 +25,7 @@ const Login = () => {
   }
   useEffect(()=>{
     if (loggedIn){
-      navigation.navigate('Home', {... user})
+      this.navigation.navigate('FitnessHome', {...user})
     }
   },[loggedIn]);
 
