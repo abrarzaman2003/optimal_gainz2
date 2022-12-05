@@ -1,10 +1,11 @@
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { Keyboard, StyleSheet, Pressable, View, Text, TextInput, Button, ScrollView, SafeAreaView } from 'react-native';
 
 import auth from '../../Firebase/firebaseAuth';
-const WorkoutsView = () => {
-    
+const WorkoutsView = ({route}) => {
+    console.log('clg route inside workouts view: ', route)
+    console.log('clg route inside workouts viewzzz: ', route.params)
     const navigation = useNavigation();
 
     return (
@@ -22,36 +23,36 @@ const WorkoutsView = () => {
               <Greeting time="morning" name={auth.currentUser?.email}/>
             </View>
             <View style={styles.row}>
-              <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: auth.currentUser?.uid, userId:route.params.id})}>
+              <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("WorkoutInformation", {id: "0uLUSzQgA4kMpC54Dd9a", userId:route.params.id})}>
                 <Text style={styles.text}>
                   Dumbells Incline Press
                 </Text>
               </Pressable>
-              <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "vFFS36h72WL1tIS4F1t6", userId:route.params.id})}>
+              <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("WorkoutInformation", {id: "vFFS36h72WL1tIS4F1t6", userId:route.params.id})}>
                 <Text style={styles.text}>
                   Bench Press
                 </Text>
               </Pressable>
             </View>
             <View style={styles.row}>
-              <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "UBhyPaoEOQOKDoVXgO3r", userId:route.params.id})}>
+              <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("WorkoutInformation", {id: "UBhyPaoEOQOKDoVXgO3r", userId:route.params.id})}>
                 <Text style={styles.text}>
                   Dumbell Bench Press
                 </Text>
               </Pressable>
-              <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "yydSFEXHLPmCzLSmk1R1", userId:route.params.id})}>
+              <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("WorkoutInformation", {id: "yydSFEXHLPmCzLSmk1R1", userId:route.params.id})}>
                 <Text style={styles.text}>
                   Military Press
                 </Text>
               </Pressable>
             </View>
             <View style={styles.row}>
-              <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "w7kDr8dc9iG3vc1l4lYw", userId:route.params.id})}>
+              <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("WorkoutInformation", {id: "w7kDr8dc9iG3vc1l4lYw", userId:route.params.id})}>
                 <Text style={styles.text}>
                   Overhead Press
                 </Text>
               </Pressable>
-              <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("Workout", {id: "Td0HuI9SBqyKH5CBYz0i", userId:route.params.id})}>
+              <Pressable style={styles.griditem} onLongPress={() => navigation.navigate("WorkoutInformation", {id: "Td0HuI9SBqyKH5CBYz0i", userId:route.params.id})}>
                 <Text style={styles.text}>
                   Romainian Deadlift
                 </Text>

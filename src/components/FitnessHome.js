@@ -11,7 +11,7 @@ import SearchBar from "./SearchBar";
 function FitnessHome({route}) {
     const navigation = useNavigation();
     console.log("route params: ", route.params)
-
+  console.log('clg route inside fitnes honme: ', route)
     return (
         <View style={[styles.container, {
             // Try setting `flexDirection` to `"row"`.
