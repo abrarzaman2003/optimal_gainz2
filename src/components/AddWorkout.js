@@ -32,8 +32,7 @@ function CreateCustomWorkout( {navigation} )
       setWorkout(a);
       // setLoggedIn(true);
     }
-    
-
+    navigation.navigate("FitnessHome");
   }
   // useEffect(()=>{
   //   if (loggedIn){
