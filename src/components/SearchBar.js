@@ -5,12 +5,16 @@ import { Feather } from '@expo/vector-icons';
 
 
 const SearchBar = () => {
+    return (
 
-    <View>
-       <Feather name="search" size={24} color="black" />
-        <TextInput style={{fontSize:15}} placeholder="Search"/>
-    </View>
+        <View style={{margin:20}}>
+            <TextInput style={{fontSize:15, padding: 10,
+            borderRadius: 10,
+            color: '#000', borderWidth: 1,
+        }} placeholder="Search"/>
+        </View>
 
+    )
 
 }
 

@@ -6,7 +6,7 @@ import Btn from "./Btn";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { makeUser } from "../../Firebase/functions";
-
+import logo from '../../assets/workequip.png'
 const Register = () => {
     const navigation = useNavigation();
     const [email,setEmail] = useState("");
@@ -30,8 +30,9 @@ const Register = () => {
             // Try setting `flexDirection` to `"row"`.
             flexDirection: "column"
           }]}>
-            <Image source={require('../../assets/workequip.png')}
-              style={{ alignSelf:'center' ,alignItems:'center'
+            <Image source={logo}
+              style={{ alignSelf:'center' ,alignItems:'center',height: 250,
+              width: 250
               }}/>
 
             <View style={{marginVertical: 245,width: 350,borderRadius:30,paddingTop:10, alignSelf:'center' ,alignItems:'center', position: 'absolute'}}>

@@ -7,6 +7,7 @@ import strong from '../../assets/strong.png';
 import situp from '../../assets/situp.png';
 import lift from '../../assets/lift.png';
 import Card from "./Card";
+import SearchBar from "./SearchBar";
 function FitnessHome({route}) {
     const navigation = useNavigation();
     console.log("route params: ", route.params)
@@ -16,7 +17,8 @@ function FitnessHome({route}) {
             // Try setting `flexDirection` to `"row"`.
             flexDirection: "column"
           }]}>
-             <Text style={{fontSize: 24, color: '#0D0D0D', fontWeight:'bold'}}>Hello, Alan</Text>
+            <SearchBar />
+             {/* <Text style={{fontSize: 24, color: '#0D0D0D', fontWeight:'bold'}}>Hello, Alan</Text> */}
             <Text style={{fontSize: 24, color: '#0D0D0D', fontWeight:'bold'}}>Workouts</Text>
             <Card cardColor={'#F7F3E3'} cardImage={strong} cardText={'Build Muscle'}/>
             <Card cardColor={'#D7F2F4'} cardImage={situp} cardText={'Get Strong'}/>

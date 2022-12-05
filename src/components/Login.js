@@ -4,6 +4,8 @@ import { View, ImageBackground,Image, Text, StyleSheet, Pressable } from "react-
 import Btn from "./Btn";
 import Field from "./Field";
 import { useNavigation } from "@react-navigation/native";
+import logo from '../../assets/workequip.png'
+
 const Login = () => {
   const navigation = useNavigation();
   const [email,setEmail] = useState("");
@@ -38,8 +40,9 @@ const Login = () => {
             // Try setting `flexDirection` to `"row"`.
             flexDirection: "column"
           }]}>
-            <Image source={require('../../assets/workequip.png')}
-              style={{ alignSelf:'center' ,alignItems:'center'
+            <Image source={logo}
+              style={{ alignSelf:'center' ,alignItems:'center', height: 250,
+              width: 250
               }}/>
 
             <View style={{marginVertical: 245,width: 350,borderRadius:30,paddingTop:10, alignSelf:'center' ,alignItems:'center', position: 'absolute'}}>
