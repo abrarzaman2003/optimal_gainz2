@@ -7,7 +7,6 @@ import Login from './src/components/Login';
 import Register from './src/components/Register';
 //npm i -S react-native-swipe-gesturesimport Home from "./Home";
 import FitnessHome from './src/components/FitnessHome';
-import Splash from './src/components/Splash';
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -16,9 +15,9 @@ function App() {
         <NavigationContainer>
             <Stack.Navigator screenOptions={{headerShown: false}}>
                 {/* <Stack.Screen name="Splash" component={Splash} /> */}
-                <Stack.Screen name="Home" component={Home} />
+                {/* <Stack.Screen name="Home" component={Home} />
                 <Stack.Screen name="Login" component={Login} />
-                <Stack.Screen name="Register" component={Register} />
+                <Stack.Screen name="Register" component={Register} /> */}
                 <Stack.Screen name="FitnessHome" component={FitnessHome} />
             </Stack.Navigator>
         </NavigationContainer>

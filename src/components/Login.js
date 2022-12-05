@@ -21,11 +21,13 @@ const Login = () => {
       setLoggedIn(true);
     }
     
+    console.log('clg setUser: ', user)
+    console.log('setLoggedIn: ', loggedIn)
 
   }
   useEffect(()=>{
-    if (loggedIn){
-      this.navigation.navigate('FitnessHome', {...user})
+    if (loggedIn == true){
+      navigation.navigate('FitnessHome', {...user})
     }
   },[loggedIn]);
 

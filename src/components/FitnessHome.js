@@ -3,9 +3,10 @@ import { View, ImageBackground,Image, Text, StyleSheet, Pressable } from "react-
 import Btn from "./Btn";
 import Field from "./Field";
 import { useNavigation } from "@react-navigation/native";
-
-
-
+import strong from '../../assets/strong.png';
+import situp from '../../assets/situp.png';
+import lift from '../../assets/lift.png';
+import Card from "./Card";
 function FitnessHome({route}) {
     const navigation = useNavigation();
     console.log("route params: ", route.params)
@@ -15,28 +16,20 @@ function FitnessHome({route}) {
             // Try setting `flexDirection` to `"row"`.
             flexDirection: "column"
           }]}>
-            <Image source={require('../../assets/workequip.png')}
-              style={{ alignSelf:'center' ,alignItems:'center'
-              }}/>
-
-            <View style={{marginVertical: 245,width: 350,borderRadius:30,paddingTop:10, alignSelf:'center' ,alignItems:'center', position: 'absolute'}}>
-                <Text style={{fontSize: 32, color: '#0D0D0D', fontWeight:'bold'}}>Sdasdsdda</Text>
-                <Text style={{color: '#B3B6B7', fontSize: 14, fontWeight:'bold', marginBottom: 10}}>Login to your account</Text>
-                <Field placeholder="Email address" keyboardType={"email-address"}  onChangeText= {newText => setEmail(newText)}/>
-                <Field placeholder="Password" secureTextEntry={true} onChangeText= {newText => setPassword(newText)}/>
-                <Pressable onPress={() => logOn()}>
-                  
-                  <Btn brdRadius={40}  brdWidth={'1'} brdColor={'#53595D'} btnWidth={150} txtSize={14} textColor='#0D0D0D' btnLabel="Login" />
-                </Pressable>
-                <Text style={{textAlign: 'center', color: '#B0B6BB', fontSize: '14'}}>Don't have an account?</Text>
-                {/* <TouchableOpacity>
-                    <Text style={{fontSize:14, fontWeight:'bold', color: '#0D0D0D'}}>SignIn</Text>
-                </TouchableOpacity> */}
-            </View>
-
+             <Text style={{fontSize: 24, color: '#0D0D0D', fontWeight:'bold'}}>Hello, Alan</Text>
+            <Text style={{fontSize: 24, color: '#0D0D0D', fontWeight:'bold'}}>Workouts</Text>
+            <Card cardColor={'#F7F3E3'} cardImage={strong} cardText={'Build Muscle'}/>
+            <Card cardColor={'#D7F2F4'} cardImage={situp} cardText={'Get Strong'}/>
+            <Card cardColor={'#FFDFDF'} cardImage={lift} cardText={'Fat Loss'}/>
         </View>
     )
 }
-
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      padding: 20
+    },
+  });
 
 export default FitnessHome
